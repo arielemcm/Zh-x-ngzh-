@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mapa interactivo de las zonas ecológicas del municipio de Achacachi.">
+  <title>Zonas ecológicas de Achacachi</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="atlas-shell">
+    <header class="page-header">
+      <div>
+        <p class="location">Municipio de Achacachi · La Paz, Bolivia</p>
+        <h1>Zonas ecológicas de Achacachi</h1>
+      </div>
+      <p class="header-note">Selecciona una zona para aislarla. Vuelve a pulsarla para ver el territorio completo.</p>
+    </header>
+
+    <nav class="zone-switcher" aria-label="Filtrar el mapa por zona ecológica">
+      <button class="zone-button zone-button--ribera" type="button" data-zone="ribera" aria-pressed="false">
+        <span class="button-color" aria-hidden="true"></span>
+        <span><strong>Ribera lacustre</strong><small>Costa del Titicaca</small></span>
+      </button>
+      <button class="zone-button zone-button--llanura" type="button" data-zone="llanura" aria-pressed="false">
+        <span class="button-color" aria-hidden="true"></span>
+        <span><strong>Llanura altiplánica</strong><small>Terrenos bajo 4.000 m</small></span>
+      </button>
+      <button class="zone-button zone-button--puna" type="button" data-zone="puna" aria-pressed="false">
+        <span class="button-color" aria-hidden="true"></span>
+        <span><strong>Puna alta</strong><small>Incluye el piso nival</small></span>
+      </button>
+    </nav>
+
+    <section class="map-panel" aria-labelledby="map-heading">
+      <div class="map-copy">
+        <div>
+          <p class="map-kicker">Lectura territorial interactiva</p>
+          <h2 id="map-heading">Todo el municipio</h2>
+        </div>
+        <p id="zone-description" aria-live="polite">Las tres zonas están visibles. El relieve se mantiene bajo el color para mostrar montañas, valles y planicies.</p>
+      </div>
+
+      <div id="map-canvas" class="map-canvas">
+        <svg id="achacachi-map" role="group" aria-labelledby="svg-title svg-description">
+          <title id="svg-title">Mapa interactivo del municipio de Achacachi</title>
+          <desc id="svg-description">Mapa con tres regiones seleccionables: ribera lacustre, llanura altiplánica y puna alta.</desc>
+          <defs>
+            <clipPath id="municipality-clip"><path id="clip-boundary"></path></clipPath>
+            <filter id="land-shadow" x="-20%" y="-20%" width="140%" height="150%">
+              <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#243d3c" flood-opacity=".2"></feDropShadow>
+            </filter>
+          </defs>
+          <rect class="map-paper" width="100%" height="100%"></rect>
+          <path id="lake-shape" class="lake-shape" fill-rule="evenodd"></path>
+          <g clip-path="url(#municipality-clip)" filter="url(#land-shadow)">
+            <rect class="land-base" width="100%" height="100%"></rect>
+            <image id="hillshade" class="hillshade" preserveAspectRatio="none"></image>
+            <g id="zone-shapes" class="zone-shapes"></g>
+            <g id="contours" class="contours" aria-hidden="true"></g>
+          </g>
+          <path id="municipality-outline" class="municipality-outline" fill-rule="evenodd"></path>
+          <g class="map-labels" aria-hidden="true">
+            <text x="520" y="470" class="place-label">ACHACACHI</text>
+            <text x="83" y="520" class="water-label" transform="rotate(-79 83 520)">Lago Titicaca</text>
+            <text x="850" y="315" class="range-label" transform="rotate(-68 850 315)">Cordillera Real</text>
+          </g>
+          <g class="north-arrow" transform="translate(922 92)" aria-hidden="true">
+            <text x="0" y="-18">N</text>
+            <path d="M0 0 L-13 42 L0 34 L13 42 Z"></path>
+            <line x1="0" y1="34" x2="0" y2="82"></line>
+          </g>
+          <g class="scale-bar" transform="translate(105 858)" aria-hidden="true">
+            <path d="M0 0 H185 M0 -7 V7 M92.5 -7 V7 M185 -7 V7"></path>
+            <text x="0" y="-14">0</text><text x="92.5" y="-14">5</text><text x="185" y="-14">10 km</text>
+          </g>
+        </svg>
+      </div>
+
+      <footer class="map-footer">
+        <p><span class="uncertain-line" aria-hidden="true"></span> Las líneas punteadas indican transiciones altitudinales interpretadas.</p>
+        <p>PTDI Achacachi · SDSN Bolivia/GeoBolivia · Copernicus DEM GLO-30 · Natural Earth</p>
+      </footer>
+    </section>
+  </main>
+
+  <script src="map-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

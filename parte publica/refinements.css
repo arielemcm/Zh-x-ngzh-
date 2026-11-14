@@ -1,0 +1,122 @@
+html {
+  scroll-behavior: auto;
+}
+
+.journey {
+  height: 440vh;
+}
+
+.journey-complete {
+  position: absolute;
+  z-index: 23;
+  left: clamp(24px, 6vw, 90px);
+  bottom: max(34px, 7vh);
+  max-width: min(440px, calc(100vw - 48px));
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.journey-complete span {
+  display: block;
+  width: min(44vw, 440px);
+  height: 3px;
+  margin-bottom: 13px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.journey-complete p {
+  margin: 0;
+  font-family: "Newsreader", serif;
+  font-size: clamp(1.75rem, 3.2vw, 3.4rem);
+  line-height: .96;
+  letter-spacing: -.035em;
+  text-shadow: 0 2px 18px rgba(238, 233, 223, .75);
+}
+
+.phone-button {
+  top: auto;
+  right: calc(20.46% - 48px);
+  bottom: calc(4.5% + 19.8vw - 52px);
+  width: 96px;
+  height: 104px;
+  border-radius: 36px;
+  touch-action: manipulation;
+}
+
+.phone-button::before,
+.phone-button::after {
+  inset: auto;
+  left: 50%;
+  top: 50%;
+  width: 42px;
+  height: 42px;
+  transform: translate(-50%, -50%);
+  animation: accessiblePhonePulse 2.4s ease-out infinite;
+}
+
+.phone-button::after {
+  animation-delay: 1.2s;
+}
+
+.phone-button span {
+  top: calc(50% + 31px);
+  width: max-content;
+  max-width: 150px;
+  padding: 8px 11px;
+  background: rgba(31, 35, 29, .9);
+  font-size: .72rem;
+  line-height: 1.2;
+}
+
+@keyframes accessiblePhonePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 239, 224, .55);
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 0 0 0 18px rgba(245, 239, 224, 0);
+    opacity: .15;
+  }
+}
+
+@media (max-width: 700px) {
+  .journey {
+    height: 400vh;
+  }
+
+  .phone-button {
+    top: auto;
+    right: calc(24.25% - 48px);
+    bottom: calc(4% + 34.31vw - 52px);
+  }
+
+  .journey-complete {
+    left: 22px;
+    bottom: max(28px, 5vh);
+    max-width: calc(100vw - 44px);
+  }
+
+  .journey-complete span {
+    width: min(58vw, 260px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-complete {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+
+  .journey-complete span {
+    transform: scaleX(1);
+  }
+
+  .phone-button::before,
+  .phone-button::after {
+    animation: none;
+  }
+}
