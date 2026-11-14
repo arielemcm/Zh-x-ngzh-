@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#d8d0c2">
+  <meta name="description" content="Field Shift: entrevista agrícola para parcelas de Achacachi.">
+  <title>Field Shift · La parcela y el cielo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="parte publica/styles.css">
+  <link rel="stylesheet" href="parte publica/refinements.css">
+  <link rel="stylesheet" href="field-shift.css">
+</head>
+<body data-weather="drizzle">
+  <main>
+    <section class="journey" aria-labelledby="story-title">
+      <div class="viewport">
+        <div class="scene-wash" aria-hidden="true"></div>
+        <div class="world" aria-hidden="true">
+          <div class="landscape layer"></div>
+          <div class="mountain-haze layer"></div>
+          <canvas class="rain rain-back"></canvas>
+          <div class="crop-labels">
+            <span class="crop-label crop-potato"><i></i>Papa</span>
+            <span class="crop-label crop-quinoa"><i></i>Quinua</span>
+            <span class="crop-label crop-bean"><i></i>Haba</span>
+          </div>
+          <div class="near-growth layer"></div>
+          <div class="farmer-wrap">
+            <img class="farmer" src="assets/agricultor.png" alt="">
+            <span class="phone-glint"></span>
+          </div>
+          <canvas class="rain rain-front"></canvas>
+          <div class="mist mist-one"></div>
+          <div class="mist mist-two"></div>
+        </div>
+        <div class="paper-texture" aria-hidden="true"></div>
+
+        <header class="intro-copy">
+          <p class="place">Altiplano boliviano</p>
+          <h1 id="story-title">La parcela<br>y el cielo</h1>
+          <p>La lluvia llega suave. Baja para conocer el territorio que cultiva Julián.</p>
+        </header>
+        <div class="scroll-cue" aria-hidden="true"><span></span><p>Desliza para abrir el paisaje</p></div>
+        <p class="reveal-copy reveal-feet">Cada surco empieza<br>en un paso.</p>
+        <p class="reveal-copy reveal-fields">Tres cultivos resisten<br>en la altura.</p>
+
+        <div class="journey-complete" role="status" aria-live="polite" aria-hidden="true">
+          <span aria-hidden="true"></span>
+          <p>El paisaje está completo.</p>
+        </div>
+
+        <button class="phone-button" type="button" aria-label="Abrir controles del clima" aria-expanded="false" aria-controls="weather-panel"><span>Toca el celular para cambiar el clima</span></button>
+
+        <section class="weather-panel" id="weather-panel" aria-labelledby="weather-title">
+          <div class="weather-heading">
+            <div><p>Simulación del paisaje</p><h2 id="weather-title">¿Qué trae el cielo?</h2></div>
+            <button class="panel-close" type="button" aria-label="Cerrar panel">×</button>
+          </div>
+          <div class="weather-options" role="group" aria-label="Cambiar clima">
+            <button type="button" data-weather-choice="sun" aria-pressed="false"><span class="weather-icon icon-sun"></span><span><b>Sol</b><small>Luz clara · sin lluvia</small></span></button>
+            <button type="button" data-weather-choice="drizzle" aria-pressed="true"><span class="weather-icon icon-drizzle"></span><span><b>Llovizna</b><small>Niebla ligera · lluvia fina</small></span></button>
+            <button type="button" data-weather-choice="storm" aria-pressed="false"><span class="weather-icon icon-storm"></span><span><b>Lluvia intensa</b><small>Cielo oscuro · gotas densas</small></span></button>
+          </div>
+        </section>
+
+        <div class="progress" aria-hidden="true"><span></span></div>
+        <p class="chapter" aria-live="polite">El rostro</p>
+      </div>
+    </section>
+
+    <section class="field-interview" id="field-interview" aria-labelledby="interview-title">
+      <div class="interview-transition" aria-hidden="true"></div>
+      <div class="interview-layout">
+        <aside class="interview-context">
+          <p class="interview-kicker">Field Shift · Achacachi</p>
+          <h2 id="interview-title">Cuéntanos sobre tu parcela.</h2>
+          <p>Estas tres respuestas quedarán listas para conectarse con el análisis del equipo.</p>
+          <div class="terrain-key" aria-label="Zonas incluidas en el proyecto">
+            <span><i></i>Ribera</span>
+            <span><i></i>Llanura</span>
+            <span><i></i>Puna</span>
+          </div>
+          <p class="privacy-note">No mostraremos predicciones hasta que el modelo esté conectado.</p>
+        </aside>
+
+        <div class="chat-panel" aria-label="Entrevista sobre la parcela">
+          <header class="chat-header">
+            <div class="assistant-mark" aria-hidden="true"><span></span></div>
+            <div><strong>Asistente de parcela</strong><span>Primera entrevista · 3 respuestas</span></div>
+            <div class="chat-status"><i></i><span>En curso</span></div>
+          </header>
+          <div class="chat-history" id="chat-history" role="log" aria-live="polite" aria-relevant="additions text"></div>
+          <div class="chat-controls" id="chat-controls" aria-label="Opciones de respuesta"></div>
+          <p class="chat-helper" id="chat-helper">Elige una opción para continuar.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <p>Una parcela nunca mira un solo cielo.</p>
+      <h2 id="closing-title">Gracias por compartir<br>tu experiencia.</h2>
+      <a href="#story-title">Subir al inicio</a>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="parte publica/script.js"></script>
+  <script src="field-shift.js"></script>
+</body>
+</html>

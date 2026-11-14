@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Selector de cultivos y consulta de rotación agrícola.">
+  <title>Campo claro | Selección de cultivos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <article class="crop-card">
+      <header class="page-heading">
+        <span class="sprout" aria-hidden="true"></span>
+        <p>Plan de cultivo</p>
+        <h1>Conoce tu próxima siembra.</h1>
+      </header>
+
+      <section class="crop-section" aria-labelledby="current-crop-title">
+        <h2 id="current-crop-title">¿Qué desea sembrar?</h2>
+        <p class="intro">Elija la semilla para ver su referencia visual.</p>
+        <label class="select-label" for="seed-select">Semilla para esta temporada</label>
+        <div class="select-wrapper">
+          <select id="seed-select" name="semilla-actual">
+            <option value="" selected>Selecciona una semilla...</option>
+            <option value="Papa (Huaycha Imilla)">Papa (Huaycha Imilla)</option>
+            <option value="Haba">Haba</option>
+            <option value="Cebada">Cebada</option>
+            <option value="Avena">Avena</option>
+            <option value="Oca (Ulluku / Hullikus)">Oca (Ulluku / Hullikus)</option>
+            <option value="Papalisa">Papalisa</option>
+            <option value="Cebolla">Cebolla</option>
+          </select>
+        </div>
+
+        <!-- Este bloque crece suavemente y desplaza la sección de historial. -->
+        <div class="image-reveal" id="image-reveal" aria-live="polite">
+          <div class="image-centerer">
+            <figure class="crop-figure">
+              <img id="crop-image" src="" alt="" hidden>
+              <figcaption id="crop-caption"></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="history-section" aria-labelledby="previous-crop-title">
+        <div class="section-heading">
+          <span class="history-mark" aria-hidden="true">↺</span>
+          <div>
+            <h2 id="previous-crop-title">¿Qué semilla sembraste antes?</h2>
+            <p class="intro">Busca el cultivo anterior para registrar la rotación.</p>
+          </div>
+        </div>
+        <div class="autocomplete" id="autocomplete">
+          <label class="select-label" for="previous-seed">Semilla de la temporada anterior</label>
+          <div class="search-field">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="5.8"></circle><path d="m16 16 4.2 4.2"></path></svg>
+            <input id="previous-seed" name="semilla-anterior" type="text" autocomplete="off" placeholder="Escribe para buscar..." aria-autocomplete="list" aria-controls="suggestions" aria-expanded="false">
+          </div>
+          <ul class="suggestion-list" id="suggestions" role="listbox" aria-label="Sugerencias de semillas"></ul>
+        </div>
+      </section>
+    </article>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
