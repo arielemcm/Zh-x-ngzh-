@@ -1,27 +1,49 @@
-# Experiencia agrícola interactiva
+# Asistente agrícola de Achacachi
 
-Prototipo web que acompaña al usuario desde una historia parallax hasta un onboarding agrícola interactivo.
+Experiencia interactiva para registrar información agrícola, consultar el mapa ecológico de Achacachi y analizar visualmente hojas de papa.
 
-## Contenido principal
+## Iniciar el proyecto
 
-- Historia parallax con cambios de clima y animación del agricultor.
-- Mapa interactivo del municipio de Achacachi.
-- Selección de ribera lacustre, llanura altiplánica o puna alta.
-- Onboarding de tres preguntas dentro de una misma ventana.
-- Diseño adaptable para escritorio y móvil.
+La opción recomendada es ejecutar `INICIAR_PROYECTO.bat`. Este lanzador inicia el servidor con el modelo de diagnóstico y abre la portada en:
 
-## Abrir el proyecto
-
-La entrada principal es `indexprincipal.html`. Se recomienda servir la carpeta con un servidor estático:
-
-```powershell
-python -m http.server 8000
+```text
+http://127.0.0.1:8001
 ```
 
-Después abre `http://localhost:8000/indexprincipal.html`.
+Para revisar solamente la interfaz estática también se puede usar:
 
-## Rama de colaboración
+```powershell
+.\env\Scripts\python.exe -m http.server 8000
+```
 
-El desarrollo integrado se encuentra en `proyecto-agricola-onboarding`.
+y abrir `http://127.0.0.1:8000`.
 
-Los datos GIS fuente y archivos intermedios pesados no se incluyen en Git. El recurso `parte del mapa/datos_trabajo/hillshade_achacachi.png`, necesario para visualizar el mapa, sí está versionado.
+## Estructura activa
+
+- `index.html`: entrada principal del sistema.
+- `css/` y `js/`: estilos y comportamiento compartidos por la portada.
+- `assets/`: imágenes de paisajes, personajes y semillas.
+- `modules/diagnostico-hojas/`: cámara, carga de imágenes y análisis de hojas.
+- `modules/mapa/`: mapa interactivo, fuentes GIS y scripts de generación.
+- `data/agricultura/`: información agrícola consumida por la interfaz.
+- `models/papa-clasificador-keras/`: modelo original utilizado por el servidor.
+- `tests/browser/`: verificaciones automatizadas de la interfaz.
+- `docs/`: continuidad, referencias y evidencias visuales.
+- `prototipos/`: pruebas que no forman parte de la aplicación activa.
+- `archivo/`: versiones anteriores conservadas como referencia.
+- `env/`: entorno virtual local de Python.
+
+La responsabilidad de cada carpeta y las reglas para incorporar archivos nuevos están detalladas en `docs/ESTRUCTURA_PROYECTO.md`.
+
+## Dependencias principales
+
+La portada carga primero `modules/mapa/map-data.js` y `modules/mapa/script.js`; después carga los scripts de la experiencia principal desde `js/`. El recomendador consulta `data/agricultura/informacion_agricola_la_paz.json`.
+
+El diagnóstico de hojas funciona en el navegador con el modelo de `modules/diagnostico-hojas/modelo-web/`. Cuando se usa el servidor integrado, también dispone del modelo Keras ubicado en `models/papa-clasificador-keras/` como respaldo.
+
+## Documentación
+
+- `modules/diagnostico-hojas/README.md`: uso del análisis de hojas.
+- `docs/ESTRUCTURA_PROYECTO.md`: arquitectura de carpetas.
+- `docs/continuidad/`: decisiones y puntos de continuidad.
+- `docs/evidencias/`: capturas organizadas por componente.

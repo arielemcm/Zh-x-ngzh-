@@ -1,20 +1,13 @@
-# Entornos y dependencias locales
 env/
-.venv/
-node_modules/
-
-# Perfiles y capturas temporales de revisión
+archivo/repositorio-anterior/
 .chrome-*/
 .edge-*/
-preview-onboarding-*.png
-preview-top-check.png
-
-# Archivos del sistema y editores
-.DS_Store
-Thumbs.db
-.vscode/
-
-# Fuentes GIS pesadas e intermedios de análisis
-parte del mapa/datos_fuente/
-parte del mapa/datos_trabajo/*
-!parte del mapa/datos_trabajo/hillshade_achacachi.png
+.tmp-*/
+cask/
+__pycache__/
+*.pyc
+prototipos/captura-qr/uploads/*
+!prototipos/captura-qr/uploads/.gitkeep
+modules/diagnostico-hojas/.tmp/
+modules/diagnostico-hojas/uploads/*
+!modules/diagnostico-hojas/uploads/.gitkeep

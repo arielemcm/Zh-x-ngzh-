@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#486950">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@400;500;600&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500&amp;display=swap" rel="stylesheet">
+  <title>Detección de enfermedades en plantas de papa</title>
+  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="experience.css?v=3">
+</head>
+<body data-camera-state="idle">
+  <main class="app-shell">
+    <header class="hero">
+      <a class="module-back" href="../../index.html"><span aria-hidden="true">&larr;</span> Volver al panel inicial</a>
+      <div class="hero__copy">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M9 15h8l3-5h8l3 5h8a5 5 0 0 1 5 5v17a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V20a5 5 0 0 1 5-5Z"/><circle cx="24" cy="28" r="8"/><path d="M31 10c1-5 5-7 10-6-1 5-4 8-10 6Z"/></svg>
+        </div>
+        <div>
+          <p class="hero__label">Salud de la planta de papa</p>
+          <h1>Detecta posibles enfermedades en tu planta de papa</h1>
+          <p class="hero__description">Toma o sube una fotografía de la hoja para conocer si presenta señales de enfermedad o si parece saludable.</p>
+        </div>
+      </div>
+      <div class="hero__status" id="device-state"><span class="status-dot" aria-hidden="true"></span><span>Preparando cámara</span></div>
+      <div class="hero__crop-lines" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    </header>
+
+    <section class="purpose-panel" aria-labelledby="purpose-title">
+      <div class="purpose-panel__leaf" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><path d="M12 34C12 18 25 9 53 9c0 28-9 41-25 41-10 0-16-6-16-16Z"></path><path d="M9 57c7-16 17-27 34-36"></path><path d="M25 38 21 26M34 30l1-12"></path></svg>
+      </div>
+      <div class="purpose-panel__copy">
+        <p>Antes de analizar</p>
+        <h2 id="purpose-title">Una foto clara da una orientaci&oacute;n m&aacute;s &uacute;til</h2>
+        <p>Coloca una sola hoja de papa en el centro, con buena luz y sin cubrir sus manchas o bordes.</p>
+      </div>
+      <aside class="purpose-panel__note">
+        <strong>Qu&eacute recibir&aacute;s</strong>
+        <span>El sistema mostrar&aacute; la coincidencia m&aacute;s probable y otras alternativas. Es una orientaci&oacute;n, no un diagn&oacute;stico definitivo.</span>
+      </aside>
+    </section>
+
+    <section class="capture-panel" aria-labelledby="capture-title">
+      <div class="section-heading">
+        <span class="section-number">1</span>
+        <div><h2 id="capture-title">Toma o sube una foto de la hoja</h2><p>La cámara permanece apagada hasta que decidas usarla. También puedes elegir una imagen guardada en tu equipo.</p></div>
+      </div>
+
+      <div class="camera-stage" id="camera-stage">
+        <video id="camera" autoplay playsinline muted></video>
+        <div class="viewfinder" aria-hidden="true">
+          <span class="corner corner--tl"></span><span class="corner corner--tr"></span><span class="corner corner--bl"></span><span class="corner corner--br"></span>
+          <span class="focus-ring"></span><span class="live-label"><i></i> Vista en vivo</span><span class="frame-counter">CAM 01</span>
+        </div>
+        <div class="camera-idle" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><path d="M13 20h11l4-6h9l4 6h10a7 7 0 0 1 7 7v22a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7V27a7 7 0 0 1 7-7Z"/><circle cx="32" cy="38" r="11"/></svg>
+          <strong>Cámara en espera</strong><span>Enciéndela para comenzar a encuadrar.</span>
+        </div>
+        <div class="capture-flash" aria-hidden="true"></div>
+      </div>
+
+      <div class="camera-actions">
+        <button class="button button--start" id="start-camera" type="button">
+          <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v9M7.1 5.7A8 8 0 1 0 17 5.8"/></svg></span>
+          <span class="button-label">Encender cámara</span>
+        </button>
+        <button class="button button--shutter" id="take-photo" type="button" hidden><span class="shutter-ring" aria-hidden="true"><i></i></span><span>Tomar fotografía</span></button>
+        <label class="button button--upload" for="upload-photo">
+          <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21V9m0 0 5 5m-5-5-5 5M5 4h14"></path></svg></span>
+          <span>Subir imagen</span>
+          <input class="file-input" id="upload-photo" type="file" accept="image/jpeg,image/png,image/webp">
+        </label>
+      </div>
+      <p id="status" class="status-message" role="status" aria-live="polite"></p>
+    </section>
+
+    <canvas id="canvas" hidden></canvas>
+
+    <section id="result" class="preview-panel" aria-labelledby="preview-title" hidden>
+      <div class="section-heading">
+        <span class="section-number section-number--yellow">2</span>
+        <div><h2 id="preview-title">Revisa la captura</h2><p>Confirma que la fotografía sea clara antes de guardarla.</p></div>
+      </div>
+      <div class="photo-mat"><img id="preview" alt="Fotografía tomada"><span class="photo-mat__caption">Vista previa de la fotografía</span></div>
+      <article class="diagnosis" id="diagnosis" aria-labelledby="diagnosis-title" aria-live="polite" data-state="idle">
+        <div class="diagnosis__heading">
+          <span class="diagnosis__mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 17C6 9 12 5 27 5c0 15-4 21-12 21-6 0-9-3-9-9Z"></path><path d="M4 29c4-9 10-15 19-20"></path></svg></span>
+          <div><p>Resultado orientativo</p><h3 id="diagnosis-title">Revisando la hoja&hellip;</h3></div>
+          <span class="diagnosis__confidence" id="diagnosis-confidence" hidden></span>
+        </div>
+        <div class="diagnosis__loading" id="diagnosis-loading"><span aria-hidden="true"></span><p>Preparando la imagen y comparando sus caracter&iacute;sticas. La primera revisi&oacute;n puede tardar hasta un minuto.</p></div>
+        <div class="diagnosis__result" id="diagnosis-result" hidden>
+          <p id="diagnosis-description"></p>
+          <div class="confidence-track" aria-hidden="true"><span id="confidence-bar"></span></div>
+          <details class="diagnosis__alternatives"><summary>Otras coincidencias</summary><ul id="diagnosis-alternatives"></ul></details>
+          <small id="diagnosis-disclaimer"></small>
+        </div>
+        <div class="diagnosis__error" id="diagnosis-error" hidden>
+          <p>No se pudo analizar esta fotograf&iacute;a.</p><span id="diagnosis-error-message"></span>
+          <button id="retry-diagnosis" type="button">Volver a analizar</button>
+        </div>
+      </article>
+      <div class="preview-actions">
+        <button class="button button--save" id="save-photo" type="button"><span class="button__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 20h14"/></svg></span><span>Guardar fotografía</span></button>
+        <button class="button button--secondary" id="retake" type="button"><span class="button__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9V4m0 0h5M5.5 5.5A8 8 0 1 1 4 14"/></svg></span><span>Tomar otra</span></button>
+      </div>
+    </section>
+
+    <section class="gallery-panel" aria-labelledby="gallery-title">
+      <div class="section-heading section-heading--gallery">
+        <span class="section-number section-number--outline">3</span>
+        <div><h2 id="gallery-title">Fotografías guardadas</h2><p>Las capturas más recientes quedan disponibles en este equipo.</p></div>
+        <button class="refresh-button" id="refresh" type="button" title="Actualizar fotografías"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4m0 0h5M5.5 5.5A8 8 0 1 1 4 14"/></svg><span>Actualizar lista</span></button>
+      </div>
+      <ul id="uploads" class="photo-list"><li>Cargando…</li></ul>
+    </section>
+    <section class="contribution-panel" aria-labelledby="contribution-title">
+      <span class="contribution-panel__mark" aria-hidden="true">BO</span>
+      <div>
+        <p>Aporte colectivo</p>
+        <h2 id="contribution-title">Tus fotograf&iacute;as pueden apoyar un dataset boliviano</h2>
+        <p>Con autorizaci&oacute;n, im&aacute;genes an&oacute;nimas y bien documentadas podr&aacute;n contribuir a construir datos locales sobre la salud de la papa en Bolivia. Un conjunto representativo puede apoyar investigaci&oacute;n y herramientas tecnol&oacute;gicas m&aacute;s &uacute;tiles para productores del pa&iacute;s.</p>
+        <small>Actualmente las fotograf&iacute;as se guardan solo en este equipo. No se comparten autom&aacute;ticamente.</small>
+      </div>
+    </section>
+  </main>
+  <script src="vendor/tf.min.js"></script>
+  <script src="modelo-web/model-embedded.js"></script>
+  <script src="app.js?v=4"></script>
+</body>
+</html>

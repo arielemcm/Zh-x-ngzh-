@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,650&display=swap');
+
+:root {
+  --ink: #283333;
+  --muted: #667170;
+  --paper: #f3f0e8;
+  --panel: #fbfaf5;
+  --ribera: #1c9c88;
+  --llanura: #d9922e;
+  --puna: #7e63ae;
+  --lake: #77b8cf;
+  --line: #c9c4b8;
+  --focus: #164f73;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: "DM Sans", sans-serif;
+}
+
+button { font: inherit; }
+
+.atlas-shell {
+  width: min(1220px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 38px 0 44px;
+}
+
+.page-header {
+  display: grid;
+  grid-template-columns: 1fr minmax(260px, 380px);
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 28px;
+}
+
+.location,
+.map-kicker {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: .82rem;
+  font-weight: 600;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-weight: 650;
+  letter-spacing: -.035em;
+}
+
+h1 { font-size: clamp(2.3rem, 5vw, 4.8rem); line-height: .98; }
+
+.header-note {
+  max-width: 42ch;
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: .92rem;
+  line-height: 1.55;
+}
+
+.zone-switcher {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.zone-button {
+  --zone-color: var(--ribera);
+  display: grid;
+  grid-template-columns: 8px 1fr;
+  gap: 13px;
+  align-items: stretch;
+  min-height: 70px;
+  padding: 12px 16px 12px 12px;
+  color: var(--ink);
+  text-align: left;
+  background: rgba(255,255,255,.56);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  cursor: pointer;
+  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.zone-button--llanura { --zone-color: var(--llanura); }
+.zone-button--puna { --zone-color: var(--puna); }
+.zone-button:hover { border-color: var(--zone-color); transform: translateY(-1px); }
+.zone-button[aria-pressed="true"] { background: color-mix(in srgb, var(--zone-color) 17%, white); border-color: var(--zone-color); box-shadow: inset 0 0 0 1px var(--zone-color); }
+.zone-button:focus-visible { outline: 3px solid color-mix(in srgb, var(--focus) 38%, transparent); outline-offset: 3px; }
+
+.button-color { display: block; width: 8px; height: 100%; min-height: 42px; background: var(--zone-color); border-radius: 5px; }
+.zone-button strong,
+.zone-button small { display: block; }
+.zone-button strong { margin-top: 2px; font-size: .94rem; }
+.zone-button small { margin-top: 3px; color: var(--muted); font-size: .76rem; }
+
+.map-panel {
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 22px 52px rgba(48, 60, 58, .10);
+}
+
+.map-copy {
+  display: grid;
+  grid-template-columns: minmax(240px, .75fr) 1fr;
+  gap: 40px;
+  align-items: end;
+  padding: 22px 28px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.map-copy h2 { font-size: clamp(1.7rem, 3vw, 2.5rem); }
+#zone-description { max-width: 68ch; margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.55; }
+
+.map-canvas { position: relative; background: #ede8dd; }
+.map-canvas svg { display: block; width: 100%; height: auto; max-height: 72vh; }
+.map-paper { fill: #eee7da; }
+.lake-shape { fill: var(--lake); stroke: #3f829d; stroke-width: 1.4; }
+.land-base { fill: #e7dfd1; }
+.hillshade { opacity: .52; mix-blend-mode: multiply; }
+
+.zone {
+  stroke: rgba(255,255,255,.82);
+  stroke-width: .9;
+  fill-opacity: .78;
+  vector-effect: non-scaling-stroke;
+  cursor: pointer;
+  transition: opacity 220ms ease, filter 220ms ease, fill 220ms ease;
+}
+
+.zone--ribera { fill: var(--ribera); }
+.zone--llanura { fill: var(--llanura); }
+.zone--puna { fill: var(--puna); }
+.zone:hover,
+.zone:focus-visible { filter: saturate(1.28) brightness(1.04); outline: none; }
+.zone:focus-visible { stroke: var(--focus); stroke-width: 2.2; }
+.map-canvas.has-selection .zone:not(.is-selected) { fill: #b8bbb5; fill-opacity: .34; filter: grayscale(1); }
+.map-canvas.has-selection .zone.is-selected { fill-opacity: .94; filter: saturate(1.12) brightness(1.03); }
+
+.contour { fill: none; stroke: #504957; stroke-width: 1; vector-effect: non-scaling-stroke; opacity: .62; pointer-events: none; }
+.contour--4000 { stroke-dasharray: 7 5; }
+.contour--4500 { stroke-dasharray: 2 5; }
+.municipality-outline { fill: none; stroke: #292823; stroke-width: 2.8; vector-effect: non-scaling-stroke; pointer-events: none; }
+
+.map-labels { pointer-events: none; text-anchor: middle; }
+.map-labels text { paint-order: stroke; stroke: rgba(255,255,255,.9); stroke-width: 5px; stroke-linejoin: round; }
+.place-label { fill: #26302f; font-size: 20px; font-weight: 700; }
+.water-label { fill: #226a8c; font-size: 17px; font-style: italic; }
+.range-label { fill: #54465e; font-size: 16px; font-style: italic; }
+.north-arrow { fill: #292823; stroke: #fff; stroke-width: 2; text-anchor: middle; }
+.north-arrow text { stroke: none; font-weight: 700; font-size: 22px; }
+.north-arrow line { stroke: #292823; stroke-width: 5; }
+.scale-bar path { fill: none; stroke: #292823; stroke-width: 3; }
+.scale-bar text { fill: #292823; font-size: 13px; text-anchor: middle; font-weight: 600; }
+
+.map-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 13px 22px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: .7rem;
+}
+.map-footer p { margin: 0; }
+.uncertain-line { display: inline-block; width: 25px; margin-right: 7px; border-top: 2px dashed #54465e; vertical-align: middle; }
+
+@media (max-width: 760px) {
+  .atlas-shell { width: min(100% - 24px, 1220px); padding-top: 24px; }
+  .page-header { grid-template-columns: 1fr; gap: 14px; margin-bottom: 22px; }
+  .zone-switcher { grid-template-columns: 1fr; }
+  .zone-button { min-height: 58px; grid-template-columns: 7px 1fr; }
+  .zone-button small { display: none; }
+  .map-copy { grid-template-columns: 1fr; gap: 8px; padding: 18px; }
+  .map-canvas svg { min-height: 0; max-height: none; }
+  .map-footer { display: block; padding: 12px 16px; line-height: 1.45; }
+  .map-footer p + p { margin-top: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zone,
+  .zone-button { transition: none; }
+}
