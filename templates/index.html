@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tu tío Sapo te apoya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <!-- Ruta corregida para Flask -->
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <nav class="agri-shortcuts" aria-label="Herramientas agrícolas">
+    <a class="agri-shortcuts__link agri-shortcuts__link--leaves" href="/revisar-hoja">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12c0-5 4-8 13-8 0 9-3 13-8 13-3 0-5-2-5-5Z"></path><path d="M4 20c2-5 5-8 10-11"></path></svg>
+      <span>Revisar hoja</span>
+    </a>
+    <a class="agri-shortcuts__link agri-shortcuts__link--harvest" href="/llevar-cosecha">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v10H3Z"></path><path d="M14 10h4l3 3v3h-7Z"></path><circle cx="7" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="M5 6V4h6v2"></path></svg>
+      <span>Llevar cosecha</span>
+    </a>
+    <a class="agri-shortcuts__link agri-shortcuts__link--frog" href="/" aria-label="Main menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7"></path><path d="M5 9v12h14V9"></path><path d="M9 21v-7h6v7"></path></svg>
+      <span>Main menu</span>
+    </a>
+  </nav>
+  <main class="app-shell">
+    <section class="chat" aria-labelledby="chat-title">
+      <header class="chat__header">
+        <div class="chat__badge" aria-hidden="true">✦</div>
+        <div>
+          <p class="eyebrow">Altiplano boliviano</p>
+          <h1 id="chat-title">Tu tío Sapo te apoya</h1>
+        </div>
+        <p class="chat__status" id="knowledgeStatus"><span></span> Cargando datos</p>
+      </header>
+
+      <div class="chat__body" id="chatHistory" role="log" aria-live="polite" aria-relevant="additions text">
+        <div class="message message--bot">
+          <p>Hola. Soy tu Tío Sapo. Puedo predecir tu cosecha, decirte si es buen día para sembrar o recomendarte qué rotar. ¿Qué necesitas?</p>
+        </div>
+
+        <div class="quick-prompts" id="quickPrompts" aria-label="Preguntas sugeridas">
+          <button type="button" data-question="¿Cuánto rendirá la Papa en Planicie?">Rendimiento de Papa</button>
+          <button type="button" data-question="¿Puedo sembrar Haba hoy? Hay 15mm de lluvia y humedad 0.5, sin heladas.">¿Siembro Haba hoy?</button>
+          <button type="button" data-question="Compara la rotación para la zona Planicie después de sembrar Papa">Rotación de cultivos</button>
+          <button type="button" data-question="¿Qué información tienes de la alfalfa en Achacachi?">Buscar Alfalfa en PTDI</button>
+        </div>
+      </div>
+
+      <div class="mascot-lane is-collapsed" id="mascotLane">
+        <button class="mascot-toggle" id="mascotToggle" type="button" aria-expanded="false" aria-controls="toadTrack">
+          <span class="mascot-toggle__label">Mostrar sapito</span>
+          <span class="mascot-toggle__icon" aria-hidden="true">×</span>
+        </button>
+        <div class="toad-track" id="toadTrack">
+          <!-- Ruta corregida -->
+          <img class="toad" id="toad" data-direction="derecha" src="/static/imagenes_sapo/sapo1.jfif" alt="Sapito animado." role="button" tabindex="0" width="104" height="132" />
+        </div>
+      </div>
+
+      <footer class="composer-wrap">
+        <form class="composer" id="chatForm">
+          <label class="sr-only" for="chatInput">Escribe tu respuesta</label>
+          <input id="chatInput" name="answer" type="text" maxlength="250" autocomplete="off" placeholder="Escribe tu pregunta…" required />
+          <button type="submit">Enviar <span aria-hidden="true">↑</span></button>
+          <button class="compact-toad" id="compactToad" type="button" aria-label="Hacer que el sapito muestre un gesto">
+            <!-- Ruta corregida -->
+            <img id="compactToadImage" src="/static/imagenes_sapo/sapo1.jfif" alt="" width="64" height="64" />
+          </button>
+        </form>
+        <p class="composer__hint" id="composerHint">Cargando la base agrícola de La Paz…</p>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Ruta corregida -->
+  <script src="/static/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+﻿zona;latitud_centro;longitud_centro;radio_buffer_m;pendiente_media_pct;pendiente_mediana_pct;pendiente_minima_pct;pendiente_maxima_pct;pixeles_utilizados
+PUNA;-16,05;-68,6;1000;6,149;5,855;0,089;19,948;3370
+PLANICIE;-16,0447;-68,685;1000;6,189;3,689;0,0;50,529;3363
+RIBERA;-16,02;-68,7;1000;3,192;2,79;0,0;12,102;3371
