@@ -1,0 +1,235 @@
+<div id="agri-nav-exploration" class="viz-carousel viz-dotted-background" aria-label="Bosquejos adaptables de navegación" data-previous-label="Anterior" data-next-label="Siguiente">
+  <section class="nav-concept nav-concept--horizon" data-variant="Horizonte vivo" aria-label="Navbar Horizonte vivo">
+    <div class="concept-layout">
+      <article class="desktop-scene" aria-label="Vista de escritorio">
+        <div class="landscape-wash" aria-hidden="true"></div>
+        <nav class="horizon-nav" aria-label="Navegación principal">
+          <a class="brand" href="#"><span class="brand-mark">L</span><span>La parcela<br>y el cielo</span></a>
+          <div class="horizon-journey" aria-label="Capítulos">
+            <span class="horizon-line" aria-hidden="true"></span>
+            <button class="journey-stop is-active" type="button" data-nav-target="La historia"><i></i><span>Historia</span></button>
+            <button class="journey-stop" type="button" data-nav-target="Tu territorio"><i></i><span>Territorio</span></button>
+            <button class="journey-stop" type="button" data-nav-target="Tu cultivo"><i></i><span>Cultivo</span></button>
+            <button class="journey-stop" type="button" data-nav-target="Tu historial"><i></i><span>Historial</span></button>
+          </div>
+          <div class="nav-actions">
+            <button class="weather-chip" type="button"><i data-lucide="cloud-rain" aria-hidden="true"></i><span>Llovizna</span></button>
+            <button class="start-button" type="button">Iniciar <i data-lucide="arrow-down" aria-hidden="true"></i></button>
+          </div>
+        </nav>
+        <div class="scene-copy">
+          <span>Altiplano boliviano</span>
+          <h2 data-scene-title>La historia</h2>
+          <p>La navegación se posa sobre el paisaje como una línea del horizonte.</p>
+        </div>
+      </article>
+      <article class="phone-scene" aria-label="Adaptación móvil">
+        <div class="phone-top">
+          <a class="phone-brand" href="#">La parcela<br>y el cielo</a>
+          <button type="button" aria-label="Clima: llovizna"><i data-lucide="cloud-rain" aria-hidden="true"></i></button>
+        </div>
+        <div class="phone-copy"><span>Altiplano boliviano</span><strong data-scene-title>La historia</strong></div>
+        <nav class="phone-dock" aria-label="Capítulos del recorrido">
+          <button class="is-active" type="button" data-nav-target="La historia"><i data-lucide="book-open" aria-hidden="true"></i><span>Historia</span></button>
+          <button type="button" data-nav-target="Tu territorio"><i data-lucide="map" aria-hidden="true"></i><span>Zona</span></button>
+          <button type="button" data-nav-target="Tu cultivo"><i data-lucide="sprout" aria-hidden="true"></i><span>Cultivo</span></button>
+          <button type="button" data-nav-target="Tu historial"><i data-lucide="history" aria-hidden="true"></i><span>Historial</span></button>
+        </nav>
+      </article>
+    </div>
+  </section>
+
+  <section class="nav-concept nav-concept--totora" data-variant="Totora lateral" aria-label="Navbar Totora lateral" hidden>
+    <div class="concept-layout">
+      <article class="desktop-scene" aria-label="Vista de escritorio">
+        <div class="landscape-wash" aria-hidden="true"></div>
+        <nav class="totora-rail" aria-label="Navegación principal">
+          <a class="totora-brand" href="#"><span>LP</span></a>
+          <div class="totora-links">
+            <button class="is-active" type="button" data-nav-target="La historia"><span>01</span>Historia</button>
+            <button type="button" data-nav-target="Tu territorio"><span>02</span>Territorio</button>
+            <button type="button" data-nav-target="Tu cultivo"><span>03</span>Cultivo</button>
+            <button type="button" data-nav-target="Tu historial"><span>04</span>Historial</button>
+          </div>
+          <button class="rail-weather" type="button" aria-label="Clima: llovizna"><i data-lucide="cloud-rain" aria-hidden="true"></i></button>
+        </nav>
+        <div class="scene-copy scene-copy--rail">
+          <span>Recorrido agrícola</span>
+          <h2 data-scene-title>La historia</h2>
+          <p>Una guía vertical inspirada en las totoras deja el cielo completamente libre.</p>
+          <button class="continue-link" type="button">Continuar el recorrido <i data-lucide="arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </article>
+      <article class="phone-scene phone-scene--totora" aria-label="Adaptación móvil">
+        <div class="phone-top">
+          <a class="phone-brand" href="#">LP</a>
+          <span class="chapter-count">02 / 04</span>
+          <button type="button" data-menu-toggle aria-expanded="false" aria-label="Abrir navegación"><i data-lucide="menu" aria-hidden="true"></i></button>
+        </div>
+        <div class="phone-copy"><span>Recorrido agrícola</span><strong data-scene-title>Tu territorio</strong></div>
+        <div class="mobile-sheet" data-menu-sheet hidden>
+          <button type="button" data-nav-target="La historia">Historia</button>
+          <button class="is-active" type="button" data-nav-target="Tu territorio">Territorio</button>
+          <button type="button" data-nav-target="Tu cultivo">Cultivo</button>
+          <button type="button" data-nav-target="Tu historial">Historial</button>
+        </div>
+        <button class="mobile-continue" type="button">Continuar <i data-lucide="arrow-right" aria-hidden="true"></i></button>
+      </article>
+    </div>
+  </section>
+
+  <section class="nav-concept nav-concept--map" data-variant="Carta territorial" aria-label="Navbar Carta territorial" hidden>
+    <div class="concept-layout">
+      <article class="desktop-scene" aria-label="Vista de escritorio">
+        <div class="landscape-wash" aria-hidden="true"></div>
+        <nav class="map-nav" aria-label="Navegación principal">
+          <a class="map-brand" href="#"><span>La parcela</span><span>y el cielo</span></a>
+          <div class="map-tabs">
+            <button class="is-active" type="button" data-nav-target="La historia"><span>Historia</span><small>El comienzo</small></button>
+            <button type="button" data-nav-target="Tu territorio"><span>Territorio</span><small>La parcela</small></button>
+            <button type="button" data-nav-target="Tu cultivo"><span>Cultivo</span><small>La semilla</small></button>
+            <button type="button" data-nav-target="Tu historial"><span>Historial</span><small>La memoria</small></button>
+          </div>
+          <button class="map-weather" type="button"><i data-lucide="cloud-rain" aria-hidden="true"></i><span>Clima<br><b>Llovizna</b></span></button>
+        </nav>
+        <div class="scene-copy scene-copy--map">
+          <span>Achacachi · Bolivia</span>
+          <h2 data-scene-title>La historia</h2>
+          <p>Una carta de navegación editorial que se pliega al avanzar.</p>
+        </div>
+      </article>
+      <article class="phone-scene phone-scene--map" aria-label="Adaptación móvil">
+        <nav class="map-mobile-nav" aria-label="Navegación principal">
+          <a href="#">La parcela<br>y el cielo</a>
+          <button type="button" data-menu-toggle aria-expanded="false"><span>Historia</span><i data-lucide="chevron-down" aria-hidden="true"></i></button>
+        </nav>
+        <div class="map-fold" data-menu-sheet hidden>
+          <button class="is-active" type="button" data-nav-target="La historia">Historia <small>El comienzo</small></button>
+          <button type="button" data-nav-target="Tu territorio">Territorio <small>La parcela</small></button>
+          <button type="button" data-nav-target="Tu cultivo">Cultivo <small>La semilla</small></button>
+          <button type="button" data-nav-target="Tu historial">Historial <small>La memoria</small></button>
+        </div>
+        <div class="phone-copy"><span>Achacachi · Bolivia</span><strong data-scene-title>La historia</strong></div>
+        <div class="mobile-weather"><i data-lucide="cloud-rain" aria-hidden="true"></i><span>Llovizna</span></div>
+      </article>
+    </div>
+  </section>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Gantari:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap');
+    #agri-nav-exploration { --ink:#20241f; --soft:#596057; --paper:#ece6da; --paper2:#d9d1c3; --red:#c7473e; --green:#486950; --sky:#c8d0cc; color:var(--ink); font-family:'Gantari',sans-serif; }
+    #agri-nav-exploration * { box-sizing:border-box; }
+    #agri-nav-exploration button, #agri-nav-exploration a { color:inherit; font:inherit; }
+    #agri-nav-exploration button { cursor:pointer; }
+    #agri-nav-exploration .nav-concept { min-height:680px; padding:18px 18px 70px; }
+    #agri-nav-exploration .concept-layout { display:grid; grid-template-columns:minmax(0,2.3fr) minmax(230px,.7fr); gap:18px; max-width:980px; margin:0 auto; }
+    #agri-nav-exploration .desktop-scene, #agri-nav-exploration .phone-scene { position:relative; min-width:0; height:560px; overflow:hidden; background:linear-gradient(180deg,#d6dcda 0 33%,#d6d0c2 34% 64%,#9d9877 65% 100%); box-shadow:0 18px 50px rgba(31,36,31,.18); }
+    #agri-nav-exploration .desktop-scene { border-radius:4px; }
+    #agri-nav-exploration .phone-scene { border:7px solid #252b26; border-radius:32px; }
+    #agri-nav-exploration .landscape-wash { position:absolute; inset:0; opacity:.75; background:radial-gradient(ellipse at 75% 38%,rgba(246,244,236,.9),transparent 31%),linear-gradient(170deg,transparent 0 42%,rgba(82,96,79,.22) 43% 47%,transparent 48%),linear-gradient(188deg,transparent 0 55%,rgba(69,76,54,.3) 56% 62%,transparent 63%),repeating-linear-gradient(176deg,transparent 0 28px,rgba(80,65,47,.08) 29px 30px); }
+    #agri-nav-exploration .scene-copy { position:absolute; left:7%; bottom:12%; max-width:360px; }
+    #agri-nav-exploration .scene-copy span, #agri-nav-exploration .phone-copy span { display:block; margin-bottom:8px; font-size:12px; font-weight:500; letter-spacing:.02em; }
+    #agri-nav-exploration .scene-copy h2 { margin:0; max-width:8ch; font:400 62px/.84 'Newsreader',serif; letter-spacing:-.055em; }
+    #agri-nav-exploration .scene-copy p { max-width:38ch; margin:17px 0 0; color:#3f463e; font-size:14px; line-height:1.5; }
+    #agri-nav-exploration svg { width:17px; height:17px; }
+
+    #agri-nav-exploration .horizon-nav { position:absolute; z-index:3; top:18px; right:18px; left:18px; display:grid; grid-template-columns:155px 1fr auto; align-items:center; min-height:68px; padding:8px 10px 8px 16px; border-radius:36px; background:rgba(238,233,222,.88); box-shadow:0 14px 36px rgba(42,46,39,.15); backdrop-filter:blur(14px); }
+    #agri-nav-exploration .brand { display:flex; align-items:center; gap:9px; text-decoration:none; font:500 12px/1.05 'Newsreader',serif; }
+    #agri-nav-exploration .brand-mark { display:grid; width:35px; height:35px; border-radius:50%; color:#eee8dc; background:var(--ink); font:400 22px 'Newsreader',serif; place-items:center; }
+    #agri-nav-exploration .horizon-journey { position:relative; display:grid; grid-template-columns:repeat(4,1fr); align-items:start; max-width:410px; margin:auto; }
+    #agri-nav-exploration .horizon-line { position:absolute; top:10px; right:10%; left:10%; height:1px; background:#9ba197; }
+    #agri-nav-exploration .journey-stop { position:relative; display:grid; justify-items:center; gap:6px; border:0; background:transparent; color:#676e65; font-size:11px; }
+    #agri-nav-exploration .journey-stop i { z-index:1; width:9px; height:9px; border:2px solid #7f867d; border-radius:50%; background:var(--paper); }
+    #agri-nav-exploration .journey-stop.is-active { color:var(--ink); }
+    #agri-nav-exploration .journey-stop.is-active i { width:15px; height:15px; margin-top:-3px; border-color:var(--red); background:var(--red); box-shadow:0 0 0 5px rgba(199,71,62,.15); }
+    #agri-nav-exploration .nav-actions { display:flex; align-items:center; gap:7px; }
+    #agri-nav-exploration .weather-chip, #agri-nav-exploration .start-button { display:flex; align-items:center; gap:7px; min-height:42px; padding:0 13px; border:0; border-radius:24px; }
+    #agri-nav-exploration .weather-chip { background:transparent; font-size:11px; }
+    #agri-nav-exploration .start-button { color:#eee8dc; background:var(--ink); font-weight:500; }
+    #agri-nav-exploration .phone-top { position:absolute; z-index:5; top:0; right:0; left:0; display:flex; align-items:center; justify-content:space-between; min-height:64px; padding:10px 14px; background:rgba(238,233,222,.88); backdrop-filter:blur(12px); }
+    #agri-nav-exploration .phone-top button { display:grid; width:42px; height:42px; border:0; border-radius:50%; background:rgba(32,36,31,.08); place-items:center; }
+    #agri-nav-exploration .phone-brand { color:inherit; font:500 16px/.88 'Newsreader',serif; text-decoration:none; }
+    #agri-nav-exploration .phone-copy { position:absolute; top:105px; left:21px; max-width:190px; }
+    #agri-nav-exploration .phone-copy strong { display:block; font:400 42px/.88 'Newsreader',serif; letter-spacing:-.045em; }
+    #agri-nav-exploration .phone-dock { position:absolute; z-index:6; right:10px; bottom:10px; left:10px; display:grid; grid-template-columns:repeat(4,1fr); min-height:67px; padding:6px; border-radius:23px; background:rgba(238,233,222,.94); box-shadow:0 12px 28px rgba(31,36,31,.22); }
+    #agri-nav-exploration .phone-dock button { display:grid; justify-items:center; gap:3px; padding:7px 2px; border:0; border-radius:17px; color:#667067; background:transparent; font-size:9px; }
+    #agri-nav-exploration .phone-dock button.is-active { color:#eee8dc; background:var(--green); }
+    #agri-nav-exploration .phone-dock svg { width:18px; height:18px; }
+
+    #agri-nav-exploration .totora-rail { position:absolute; z-index:4; top:0; bottom:0; left:0; display:flex; width:88px; flex-direction:column; align-items:center; padding:24px 10px; color:#eee8dc; background:rgba(32,36,31,.91); backdrop-filter:blur(12px); }
+    #agri-nav-exploration .totora-brand { display:grid; width:48px; height:48px; border:1px solid rgba(238,232,220,.45); border-radius:50%; color:inherit; font:400 18px 'Newsreader',serif; text-decoration:none; place-items:center; }
+    #agri-nav-exploration .totora-links { display:grid; gap:5px; width:100%; margin:auto 0; }
+    #agri-nav-exploration .totora-links button { display:grid; justify-items:center; gap:3px; padding:10px 0; border:0; border-radius:3px; color:#bfc7bd; background:transparent; font-size:9px; }
+    #agri-nav-exploration .totora-links button span { font:400 19px 'Newsreader',serif; }
+    #agri-nav-exploration .totora-links button.is-active { color:#fff; background:rgba(238,232,220,.12); }
+    #agri-nav-exploration .totora-links button.is-active span { color:#e16257; }
+    #agri-nav-exploration .rail-weather { display:grid; width:44px; height:44px; border:0; border-radius:50%; color:#eee8dc; background:rgba(238,232,220,.12); place-items:center; }
+    #agri-nav-exploration .scene-copy--rail { left:18%; }
+    #agri-nav-exploration .continue-link { display:flex; align-items:center; gap:8px; margin-top:22px; padding:0; border:0; border-bottom:1px solid currentColor; background:transparent; font-weight:500; }
+    #agri-nav-exploration .chapter-count { font:500 11px 'Gantari',sans-serif; }
+    #agri-nav-exploration .mobile-sheet, #agri-nav-exploration .map-fold { position:absolute; z-index:7; top:64px; right:0; left:0; display:grid; padding:12px; background:#ece6da; box-shadow:0 18px 30px rgba(32,36,31,.2); }
+    #agri-nav-exploration [hidden] { display:none !important; }
+    #agri-nav-exploration .mobile-sheet button { min-height:45px; border:0; border-bottom:1px solid rgba(32,36,31,.12); background:transparent; text-align:left; }
+    #agri-nav-exploration .mobile-sheet button.is-active { color:var(--red); font-weight:500; }
+    #agri-nav-exploration .mobile-continue { position:absolute; right:15px; bottom:16px; display:flex; align-items:center; gap:9px; min-height:48px; padding:0 18px; border:0; border-radius:24px; color:#eee8dc; background:var(--ink); }
+
+    #agri-nav-exploration .map-nav { position:absolute; z-index:4; top:16px; right:16px; left:16px; display:grid; grid-template-columns:140px 1fr 118px; min-height:88px; color:var(--ink); background:#eee8dc; box-shadow:0 15px 40px rgba(32,36,31,.15); }
+    #agri-nav-exploration .map-brand { display:grid; align-content:center; padding:13px 18px; border-right:1px solid #bdb4a5; font:400 19px/.85 'Newsreader',serif; text-decoration:none; }
+    #agri-nav-exploration .map-tabs { display:grid; grid-template-columns:repeat(4,1fr); }
+    #agri-nav-exploration .map-tabs button { position:relative; display:grid; align-content:center; gap:4px; padding:10px 12px; border:0; border-right:1px solid #d3cabc; background:transparent; text-align:left; }
+    #agri-nav-exploration .map-tabs button::after { position:absolute; right:0; bottom:0; left:0; height:4px; background:transparent; content:''; }
+    #agri-nav-exploration .map-tabs button.is-active::after { background:var(--red); }
+    #agri-nav-exploration .map-tabs span { font:500 13px 'Newsreader',serif; }
+    #agri-nav-exploration .map-tabs small { color:#6f756d; font-size:9px; }
+    #agri-nav-exploration .map-weather { display:flex; align-items:center; justify-content:center; gap:9px; border:0; background:#dcd4c7; text-align:left; font-size:9px; }
+    #agri-nav-exploration .map-weather b { font-size:11px; }
+    #agri-nav-exploration .scene-copy--map { left:8%; bottom:10%; }
+    #agri-nav-exploration .map-mobile-nav { position:absolute; z-index:6; top:0; right:0; left:0; display:grid; grid-template-columns:1fr 1fr; min-height:72px; background:#eee8dc; box-shadow:0 10px 28px rgba(32,36,31,.15); }
+    #agri-nav-exploration .map-mobile-nav a { align-self:center; padding:10px 16px; font:400 17px/.86 'Newsreader',serif; text-decoration:none; }
+    #agri-nav-exploration .map-mobile-nav button { display:flex; align-items:center; justify-content:space-between; padding:0 15px; border:0; border-left:1px solid #c9c0b2; background:transparent; }
+    #agri-nav-exploration .map-fold { top:72px; grid-template-columns:1fr 1fr; gap:1px; padding:1px; background:#c9c0b2; }
+    #agri-nav-exploration .map-fold button { display:grid; gap:3px; min-height:64px; padding:9px 12px; border:0; background:#eee8dc; text-align:left; }
+    #agri-nav-exploration .map-fold button.is-active { box-shadow:inset 0 -4px var(--red); }
+    #agri-nav-exploration .map-fold small { color:#6f756d; }
+    #agri-nav-exploration .mobile-weather { position:absolute; right:16px; bottom:18px; display:flex; align-items:center; gap:8px; padding:11px 14px; border-radius:24px; background:rgba(238,232,220,.9); font-size:11px; }
+
+    @media (max-width:760px) {
+      #agri-nav-exploration .nav-concept { min-height:1110px; padding:8px 8px 70px; }
+      #agri-nav-exploration .concept-layout { grid-template-columns:1fr; }
+      #agri-nav-exploration .desktop-scene { height:520px; }
+      #agri-nav-exploration .phone-scene { width:min(290px,100%); height:500px; margin:0 auto; }
+      #agri-nav-exploration .horizon-nav { grid-template-columns:120px 1fr auto; }
+      #agri-nav-exploration .horizon-journey span { display:none; }
+      #agri-nav-exploration .weather-chip span { display:none; }
+      #agri-nav-exploration .start-button { padding:0 11px; }
+      #agri-nav-exploration .map-nav { grid-template-columns:110px 1fr 70px; }
+      #agri-nav-exploration .map-tabs small { display:none; }
+      #agri-nav-exploration .map-tabs button { padding:8px 5px; }
+      #agri-nav-exploration .map-weather span { display:none; }
+    }
+  </style>
+
+  <script>
+    (() => {
+      const root = document.getElementById('agri-nav-exploration');
+      root.querySelectorAll('[data-nav-target]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const concept = button.closest('.nav-concept');
+          const target = button.dataset.navTarget;
+          const group = button.closest('nav, .mobile-sheet, .map-fold, .totora-links');
+          group?.querySelectorAll('[data-nav-target]').forEach((item) => item.classList.toggle('is-active', item === button));
+          concept.querySelectorAll('[data-scene-title]').forEach((title) => { title.textContent = target; });
+        });
+      });
+      root.querySelectorAll('[data-menu-toggle]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const concept = button.closest('.nav-concept');
+          const sheet = concept.querySelector('[data-menu-sheet]');
+          const open = sheet.hidden;
+          sheet.hidden = !open;
+          button.setAttribute('aria-expanded', String(open));
+        });
+      });
+    })();
+  </script>
+</div>

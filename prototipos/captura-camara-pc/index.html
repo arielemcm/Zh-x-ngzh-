@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cámara de la computadora</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 760px; margin: 0 auto; padding: 20px; }
+    img, video { display: block; width: 100%; max-width: 640px; height: auto; background: #111; border-radius: 8px; }
+    button { padding: 12px 16px; margin: 8px 4px 8px 0; cursor: pointer; }
+    [hidden] { display: none !important; }
+    #status { min-height: 1.5em; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Cámara de la computadora</h1>
+    <p>Permite el acceso a la cámara, toma una fotografía y guárdala.</p>
+
+    <video id="camera" autoplay playsinline muted></video>
+    <p>
+      <button id="start-camera" type="button">Encender cámara</button>
+      <button id="take-photo" type="button" hidden>Tomar fotografía</button>
+    </p>
+
+    <canvas id="canvas" hidden></canvas>
+    <section id="result" hidden>
+      <h2>Vista previa</h2>
+      <img id="preview" alt="Fotografía tomada">
+      <p>
+        <button id="save-photo" type="button">Guardar fotografía</button>
+        <button id="retake" type="button">Tomar otra</button>
+      </p>
+    </section>
+
+    <p id="status" role="status" aria-live="polite"></p>
+
+    <section>
+      <h2>Fotografías guardadas</h2>
+      <button id="refresh" type="button">Actualizar lista</button>
+      <ul id="uploads"><li>Cargando…</li></ul>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

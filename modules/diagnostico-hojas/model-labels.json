@@ -1,0 +1,21 @@
+{
+  "classes": [
+    {
+      "id": "early_blight",
+      "name": "Posible tizón temprano",
+      "description": "Enfermedad que forma manchas cafés, sobre todo en hojas más viejas."
+    },
+    {
+      "id": "late_blight",
+      "name": "Posible tizón tardío",
+      "description": "Enfermedad que oscurece la hoja y avanza rápido con humedad."
+    },
+    {
+      "id": "healthy",
+      "name": "La hoja parece sana",
+      "description": "No se ven señales claras de las enfermedades que reconoce el sistema."
+    }
+  ],
+  "preprocessing": "mobilenet_v2",
+  "notice": "Confirma que este orden coincide con class_names utilizado durante el entrenamiento."
+}

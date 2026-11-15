@@ -1,0 +1,10 @@
+env/
+.git/
+.agents/
+.codex/
+**/__pycache__/
+**/*.pyc
+tests/
+docs/evidencias/
+modules/diagnostico-hojas/uploads/*
+!modules/diagnostico-hojas/uploads/.gitkeep

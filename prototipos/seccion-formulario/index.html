@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Selección de la próxima siembra y registro del cultivo anterior.">
+  <title>Plan de cultivo | Preguntas 2 y 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles-unified.css">
+</head>
+<body>
+  <main class="page-shell">
+    <article class="crop-card">
+      <header class="page-heading">
+        <div>
+          <a class="back-link" href="../../index.html#experience-form">← Volver al territorio</a>
+          <p class="stage">Plan de cultivo</p>
+          <h1>Conoce tu próxima siembra.</h1>
+        </div>
+        <p class="zone-badge"><span aria-hidden="true"></span><small>Zona elegida</small><strong id="selected-zone">Territorio registrado</strong></p>
+      </header>
+
+      <form class="planting-form" id="planting-form">
+        <div class="questions-grid">
+          <section class="question question-current" aria-labelledby="current-crop-title">
+            <header class="question-heading">
+              <span aria-hidden="true">2</span>
+              <div>
+                <h2 id="current-crop-title">¿Qué deseas sembrar?</h2>
+                <p>Elige la semilla para esta temporada.</p>
+              </div>
+            </header>
+
+            <label class="field-label" for="seed-select">Próxima semilla</label>
+            <div class="select-wrapper">
+              <select id="seed-select" name="semilla-actual" required>
+                <option value="" selected>Selecciona una semilla…</option>
+                <option value="Papa (Huaycha Imilla)">Papa (Huaycha Imilla)</option>
+                <option value="Haba">Haba</option>
+                <option value="Cebada">Cebada</option>
+                <option value="Avena">Avena</option>
+                <option value="Oca (Ulluku / Hullikus)">Oca (Ulluku / Hullikus)</option>
+                <option value="Papalisa">Papalisa</option>
+                <option value="Cebolla">Cebolla</option>
+              </select>
+            </div>
+
+            <div class="crop-preview" id="crop-preview" aria-live="polite">
+              <span class="crop-illustration" id="crop-illustration" aria-hidden="true"></span>
+              <div>
+                <small>Referencia de cultivo</small>
+                <strong id="crop-caption">Elige una semilla</strong>
+                <p id="crop-note">Aquí aparecerá una referencia breve de tu elección.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="question question-history" aria-labelledby="previous-crop-title">
+            <header class="question-heading">
+              <span aria-hidden="true">3</span>
+              <div>
+                <h2 id="previous-crop-title">¿Qué sembraste antes?</h2>
+                <p>Registra el cultivo anterior para considerar la rotación.</p>
+              </div>
+            </header>
+
+            <div class="autocomplete" id="autocomplete">
+              <label class="field-label" for="previous-seed">Semilla anterior</label>
+              <div class="search-field">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="5.8"></circle><path d="m16 16 4.2 4.2"></path></svg>
+                <input id="previous-seed" name="semilla-anterior" type="text" autocomplete="off" placeholder="Escribe para buscar…" aria-autocomplete="list" aria-controls="suggestions" aria-expanded="false" required>
+              </div>
+              <ul class="suggestion-list" id="suggestions" role="listbox" aria-label="Sugerencias de semillas"></ul>
+            </div>
+
+            <div class="rotation-note">
+              <span aria-hidden="true">↺</span>
+              <p><strong>Rotar ayuda al suelo.</strong> Alternar cultivos puede reducir el agotamiento de nutrientes y algunas plagas.</p>
+            </div>
+          </section>
+        </div>
+
+        <footer class="form-actions">
+          <p id="form-status" role="status" aria-live="polite">Completa las dos preguntas para continuar.</p>
+          <button type="submit" disabled>Guardar respuestas <span aria-hidden="true">→</span></button>
+        </footer>
+      </form>
+    </article>
+  </main>
+  <script src="script-unified.js"></script>
+</body>
+</html>
