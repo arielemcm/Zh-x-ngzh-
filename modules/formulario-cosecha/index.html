@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#d8d0c2">
+  <meta name="description" content="Formulario para recomendar ciudades de venta y calcular viajes de transporte agrícola.">
+  <title>¿A dónde puedes llevar tu cosecha?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../../css/frog-assistant.css">
+  <link rel="stylesheet" href="../../css/module-navigation.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="hero">
+      <nav class="page-module-nav" aria-label="Herramientas agr&iacute;colas">
+        <a class="page-module-nav__link" href="../diagnostico-hojas/index.html" aria-label="Ir a Revisar hoja">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12c0-5 4-8 13-8 0 9-3 13-8 13-3 0-5-2-5-5Z"></path><path d="M4 20c2-5 5-8 10-11"></path></svg>
+          <span>Revisar hoja</span>
+        </a>
+        <a class="page-module-nav__link page-module-nav__link--harvest" href="../formulario-cosecha/index.html" aria-current="page" aria-label="Llevar cosecha, p&aacute;gina actual">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v10H3Z"></path><path d="M14 10h4l3 3v3h-7Z"></path><circle cx="7" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="M5 6V4h6v2"></path></svg>
+          <span>Llevar cosecha</span>
+        </a>
+      </nav>
+      <div class="hero__content">
+        <a class="back-link" href="../../index.html">Volver al panel principal</a>
+        <h1>¿A dónde puedes llevar tu cosecha?</h1>
+        <p>Indica qué producto tienes y cuántos camiones puedes utilizar. El planificador comparará mercados, rutas y costos para proponer una distribución.</p>
+        <span class="origin-badge"><span aria-hidden="true">📍</span> Origen: Achacachi, La Paz</span>
+      </div>
+    </header>
+
+    <section class="content" aria-labelledby="form-title">
+      <h2 id="form-title" class="sr-only">Datos de la cosecha y transporte</h2>
+
+      <aside class="notice" id="data-notice">
+        Cargando la información del planificador logístico…
+      </aside>
+
+      <div class="form-error" id="form-error" role="alert" hidden></div>
+      <button class="retry-server" id="retry-server" type="button" hidden>Reintentar conexi&oacute;n</button>
+
+      <form id="harvest-form">
+        <fieldset class="form-card">
+          <legend class="sr-only">Producto para vender</legend>
+          <div class="question-heading">
+            <span class="step-number">1</span>
+            <div>
+              <label for="product">¿Qué producto quieres vender?</label>
+              <p>Selecciona el producto de tu cosecha.</p>
+            </div>
+          </div>
+
+          <div class="select-wrap">
+            <select id="product" name="product" disabled required>
+              <option value="" selected>Cargando productos…</option>
+            </select>
+          </div>
+
+          <div class="production-strip" aria-live="polite">
+            <span>Producción registrada en la campaña más reciente</span>
+            <strong id="production-value">Sin seleccionar</strong>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-card">
+          <legend class="sr-only">Toneladas para transportar</legend>
+          <div class="question-heading">
+            <span class="step-number">2</span>
+            <div>
+              <label for="tonnage">¿Cuántas toneladas tienes para transportar?</label>
+              <p>Una tonelada equivale a 1.000 kilogramos.</p>
+            </div>
+          </div>
+
+          <input id="tonnage" name="tonnage" type="number" min="1" step="0.1" inputmode="decimal" placeholder="Ingresa las toneladas" required>
+        </fieldset>
+
+        <fieldset class="form-card">
+          <legend class="sr-only">Capacidad de cada camión</legend>
+          <div class="question-heading">
+            <span class="step-number">3</span>
+            <div>
+              <span class="field-label">¿Cuánto puede cargar cada camión?</span>
+              <p>Escoge la capacidad aproximada de tu transporte.</p>
+            </div>
+          </div>
+
+          <div class="capacity-options">
+            <label class="capacity-card">
+              <input type="radio" name="capacity" value="10" required>
+              <span class="radio-mark" aria-hidden="true"></span>
+              <strong>10 t</strong>
+              <small>10.000 kg</small>
+            </label>
+            <label class="capacity-card">
+              <input type="radio" name="capacity" value="15" required>
+              <span class="radio-mark" aria-hidden="true"></span>
+              <strong>15 t</strong>
+              <small>15.000 kg</small>
+            </label>
+            <label class="capacity-card">
+              <input type="radio" name="capacity" value="20" required>
+              <span class="radio-mark" aria-hidden="true"></span>
+              <strong>20 t</strong>
+              <small>20.000 kg</small>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-card form-card--last">
+          <legend class="sr-only">Camiones disponibles</legend>
+          <div class="question-heading">
+            <span class="step-number">4</span>
+            <div>
+              <label for="trucks">¿Cuántos camiones tienes disponibles?</label>
+              <p>Indica cuántos camiones puedes utilizar.</p>
+            </div>
+          </div>
+
+          <input id="trucks" name="trucks" type="number" min="1" step="1" inputmode="numeric" placeholder="Ingresa la cantidad de camiones" required>
+          <p class="helper-text">No necesitas seleccionar ciudades. El modelo buscará automáticamente los mercados urbanos más convenientes de Bolivia.</p>
+
+          <button class="submit-button" id="submit-button" type="submit" disabled>Recomendar ciudades y calcular mis viajes</button>
+        </fieldset>
+      </form>
+
+      <section id="results" class="results" aria-labelledby="results-title" aria-live="polite" hidden>
+        <div class="recommendation-heading">
+          <h2 id="results-title">Recomendación de venta</h2>
+          <p id="recommendation-meta"></p>
+        </div>
+
+        <p id="recommendation-message" class="recommendation-message"></p>
+
+        <article class="summary-card">
+          <h3>Resumen de tu transporte</h3>
+          <div id="summary-grid" class="summary-grid"></div>
+        </article>
+
+        <article class="market-section">
+          <h3>Ciudades recomendadas</h3>
+          <p class="market-section__description">Destinos que recibirían parte de la cosecha según el cálculo.</p>
+          <div id="market-cards" class="market-list"></div>
+        </article>
+
+        <div class="trip-section">
+          <h3>Detalle de viajes</h3>
+          <p id="trip-section-description" class="trip-section__description"></p>
+          <div id="trip-cards" class="trip-list"></div>
+        </div>
+
+        <details class="warnings-panel">
+          <summary>Alcance y advertencias del cálculo</summary>
+          <ul id="warnings-list"></ul>
+        </details>
+      </section>
+    </section>
+  </main>
+
+  <aside class="frog-assistant frog-assistant--steps" data-frog-assistant data-type-speed="16" data-resting-sprite="../../ayudante%20de%20pagina/assets/sapo3-transparent.png" data-talking-sprite="../../ayudante%20de%20pagina/assets/sapo4-transparent.png" aria-label="Ayudante sapo">
+    <div class="frog-assistant__bubble" id="frog-speech-bubble" aria-hidden="true">
+      <button class="frog-assistant__close" type="button" aria-label="Cerrar mensaje">&times;</button>
+      <p class="frog-assistant__message" aria-hidden="true"></p><span class="frog-assistant__cursor" aria-hidden="true">|</span>
+      <p class="frog-assistant__announcement frog-assistant__sr-only" role="status" aria-live="polite"></p>
+      <div class="frog-assistant__sequence">
+        <span class="frog-assistant__progress" aria-live="polite">1 de 4</span>
+        <button class="frog-assistant__action frog-assistant__next" type="button" data-frog-next>Siguiente</button>
+      </div>
+      <div hidden>
+        <p data-frog-step>&iquest;Qu&eacute; producto quiere vender? Esta pregunta quiere saber espec&iacute;ficamente qu&eacute; producto quiere sembrar y vender, ya sea en el futuro o en el presente.</p>
+        <p data-frog-step>&iquest;Cu&aacute;ntas toneladas tienes para transportar? Este dato es muy necesario para el c&aacute;lculo del resultado. Trata de ser lo m&aacute;s espec&iacute;fico posible.</p>
+        <p data-frog-step>&iquest;Cu&aacute;nto puede cargar cada cami&oacute;n? Necesitamos saber el rendimiento de cada cami&oacute;n para calcular cu&aacute;nto peso puede llevar por viaje, tomando en cuenta otros factores m&aacute;s.</p>
+        <p data-frog-step>&iquest;Cu&aacute;ntos camiones tienes disponibles? Es el &uacute;ltimo dato importante para el c&aacute;lculo. Al presionar &ldquo;Recomendar ciudades y calcular mis viajes&rdquo;, aparecer&aacute;n datos detallados de c&oacute;mo deber&aacute; realizar los transportes de sus cultivos.</p>
+      </div>
+    </div>
+    <button class="frog-assistant__button" type="button" aria-label="Abrir mensaje del ayudante" aria-expanded="false" aria-controls="frog-speech-bubble">
+      <span class="frog-assistant__halo" aria-hidden="true"></span>
+      <span class="frog-assistant__stage" aria-hidden="true"><img class="frog-assistant__image" src="../../ayudante%20de%20pagina/assets/sapo3-transparent.png" alt=""></span>
+      <span class="frog-assistant__hint">Preg&uacute;ntame</span>
+    </button>
+  </aside>
+
+  <script src="script.js?v=3"></script>
+  <script src="../../js/frog-assistant.js"></script>
+</body>
+</html>

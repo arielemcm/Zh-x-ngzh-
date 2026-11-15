@@ -11,3 +11,4 @@ prototipos/captura-qr/uploads/*
 modules/diagnostico-hojas/.tmp/
 modules/diagnostico-hojas/uploads/*
 !modules/diagnostico-hojas/uploads/.gitkeep
+modules/logistica/resultados/*

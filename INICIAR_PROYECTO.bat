@@ -10,15 +10,17 @@ if not exist "%~dp0env\Scripts\python.exe" (
   exit /b 1
 )
 
-echo Iniciando el servidor y preparando el modelo...
+echo Iniciando el servidor del proyecto...
 start "Servidor del proyecto" /min cmd /k ""%~dp0env\Scripts\python.exe" "%~dp0modules\diagnostico-hojas\server.py""
 
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$url='http://127.0.0.1:8001'; for($i=0; $i -lt 90; $i++){ try { $state=Invoke-RestMethod -Uri ($url + '/api/model') -TimeoutSec 2; if($state.status -eq 'ready'){ Start-Process $url; exit 0 } } catch {}; Start-Sleep -Seconds 1 }; Start-Process $url; exit 1"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$url='http://127.0.0.1:8001'; for($i=0; $i -lt 45; $i++){ try { $logistica=Invoke-RestMethod -Uri ($url + '/api/logistica/estado') -TimeoutSec 2; if($logistica.available){ Start-Process $url; exit 0 } } catch {}; Start-Sleep -Seconds 1 }; exit 1"
 
 if errorlevel 1 (
-  echo El navegador se abrio, pero el modelo demoro mas de lo esperado.
-  echo Espera unos segundos y vuelve a cargar la pagina.
+  echo.
+  echo No se pudo iniciar el servidor en http://127.0.0.1:8001
+  echo Revisa la ventana "Servidor del proyecto" para ver el error.
   pause
+  exit /b 1
 )
 
 endlocal

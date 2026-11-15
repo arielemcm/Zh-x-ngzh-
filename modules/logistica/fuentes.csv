@@ -1,0 +1,8 @@
+Tema,Fuente,URL,Uso_en_el_proyecto,Limitacion
+Produccion Achacachi,Tabla proporcionada por el usuario,,Serie de 12 campañas 2013-2014 a 2024-2025,No se proporcionó institución o documento de origen; conservar la fuente original para citarla en el informe final
+Combustible,ANH comunicado reportado por Unitel,https://unitel.bo/noticias/economia/anh-precisa-que-el-precio-del-diesel-se-mantiene-en-bs-1795-por-litro-NB24706649,Precio de referencia configurable Bs 17.95 por litro reportado el 10-11-2026,Verificar antes de cada planificación
+Red vial,OpenStreetMap,https://www.openstreetmap.org/,Red vial y coordenadas usadas por el motor OSRM,Los datos comunitarios pueden estar incompletos o desactualizados
+Motor de rutas,OSRM Project,https://project-osrm.org/docs/v26.5.0/http,Matriz de distancias y tiempos entre Achacachi y mercados,Perfil driving general; no garantiza restricciones ni tiempos específicos para camiones
+Mercados iniciales,Centros urbanos aproximados,,El Alto La Paz Oruro Cochabamba Sucre Potosi Tarija Santa Cruz Trinidad Cobija,Coordenadas y altitudes son aproximadas; verificar puntos de carga y descarga
+Demanda y precios de demostracion,Elaboracion simulada para probar el programa,,Datos iniciales de demanda y precios,No son observaciones reales y deben reemplazarse antes de tomar decisiones
+Ferias,Sin datos validados,,No se incorporaron ferias semanales,No se inventaron días ni rubros de feria

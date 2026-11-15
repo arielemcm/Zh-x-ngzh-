@@ -2,12 +2,12 @@
   "classes": [
     {
       "id": "early_blight",
-      "name": "Posible tizón temprano",
+      "name": "Posiblemente la planta se apestó y se está secando a pedazos",
       "description": "Enfermedad que forma manchas cafés, sobre todo en hojas más viejas."
     },
     {
       "id": "late_blight",
-      "name": "Posible tizón tardío",
+      "name": "Posiblemente se le pudrieron las hojas y el tallo por el hongo de la humedad",
       "description": "Enfermedad que oscurece la hoja y avanza rápido con humedad."
     },
     {

@@ -1,0 +1,928 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AgroLogística - Achacachi</title>
+
+<style>
+:root {
+    --green:#24734f;
+    --dark:#18563b;
+    --light:#eaf4ed;
+    --bg:#f5f7f5;
+    --border:#e0e7e1;
+    --text:#26342c;
+    --muted:#748078;
+}
+
+* { box-sizing:border-box; }
+
+body {
+    margin:0;
+    font-family:Arial,sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    line-height:1.5;
+}
+
+.container {
+    width:min(100% - 28px,800px);
+    margin:auto;
+}
+
+header {
+    background:white;
+    padding:16px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.brand {
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.logo {
+    background:var(--light);
+    padding:10px;
+    border-radius:10px;
+    font-size:22px;
+}
+
+.brand h1 {
+    margin:0;
+    font-size:19px;
+}
+
+.brand p {
+    color:var(--muted);
+    margin:2px 0 0;
+    font-size:12px;
+}
+
+.hero {
+    margin:23px 0;
+    background:var(--dark);
+    color:white;
+    padding:25px;
+    border-radius:13px;
+}
+
+.hero h2 {
+    margin:0 0 7px;
+    font-size:25px;
+}
+
+.hero p {
+    margin:0;
+    font-size:14px;
+    color:#e0eee5;
+}
+
+.origin {
+    display:inline-block;
+    margin-top:13px;
+    padding:6px 10px;
+    border:1px solid #87a995;
+    border-radius:20px;
+    font-size:12px;
+}
+
+.notice {
+    background:#fff4df;
+    border:1px solid #ecdcb9;
+    color:#715b2b;
+    padding:12px;
+    border-radius:8px;
+    font-size:12px;
+    margin-bottom:16px;
+}
+
+.card {
+    background:white;
+    border:1px solid var(--border);
+    border-radius:11px;
+    padding:21px;
+    margin-bottom:14px;
+}
+
+.question {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:6px;
+}
+
+.number {
+    width:28px;
+    height:28px;
+    display:grid;
+    place-items:center;
+    background:var(--green);
+    color:white;
+    font-weight:bold;
+    border-radius:50%;
+    font-size:13px;
+    flex-shrink:0;
+}
+
+h3 {
+    margin:0;
+    font-size:16px;
+}
+
+.description {
+    color:var(--muted);
+    font-size:12px;
+    margin:5px 0 16px 38px;
+}
+
+.field {
+    margin-bottom:12px;
+}
+
+.field label {
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+input,select {
+    width:100%;
+    height:44px;
+    padding:0 10px;
+    border:1px solid #ced9d0;
+    border-radius:8px;
+    font-size:14px;
+    background:white;
+    color:var(--text);
+}
+
+.production {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:8px;
+    padding:12px;
+    background:var(--light);
+    border-radius:8px;
+    margin-bottom:13px;
+}
+
+.production span {
+    font-size:12px;
+}
+
+.production strong {
+    color:var(--dark);
+    font-size:18px;
+}
+
+.hint {
+    font-size:11px;
+    color:var(--muted);
+    margin-top:5px;
+}
+
+.capacity {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+}
+
+.capacity label {
+    text-align:center;
+    padding:12px 5px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.capacity input {
+    width:16px;
+    height:16px;
+    accent-color:var(--green);
+}
+
+.capacity strong {
+    display:block;
+    font-size:19px;
+}
+
+.capacity small {
+    color:var(--muted);
+    font-size:10px;
+}
+
+.primary {
+    width:100%;
+    padding:15px;
+    border:0;
+    border-radius:8px;
+    background:var(--green);
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:12px;
+}
+
+.primary:hover {
+    background:var(--dark);
+}
+
+.primary:disabled {
+    opacity:.6;
+}
+
+#loading {
+    display:none;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+    margin-top:12px;
+}
+
+#error {
+    display:none;
+    color:#a33d35;
+    background:#fff0ef;
+    padding:12px;
+    border-radius:8px;
+    font-size:13px;
+    margin-top:12px;
+}
+
+#results {
+    display:none;
+    margin:25px 0;
+}
+
+.result-title {
+    font-size:23px;
+    margin:0;
+}
+
+.subtitle {
+    color:var(--muted);
+    font-size:12px;
+}
+
+.decision {
+    border-left:4px solid var(--green);
+    background:var(--light);
+    border-radius:8px;
+    padding:14px;
+    font-size:13px;
+    margin:15px 0;
+}
+
+.decision.warning {
+    background:#fff4df;
+    border-color:#c18b32;
+}
+
+.result-card {
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:white;
+    padding:16px;
+    margin-bottom:13px;
+}
+
+.result-card h3 {
+    margin-bottom:12px;
+}
+
+.metrics {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:9px;
+}
+
+.metric {
+    background:#f5f8f5;
+    padding:12px;
+    border-radius:8px;
+}
+
+.metric span {
+    font-size:11px;
+    color:var(--muted);
+    display:block;
+}
+
+.metric strong {
+    font-size:21px;
+    color:var(--dark);
+    display:block;
+    margin:3px 0;
+}
+
+.metric small {
+    color:var(--muted);
+    font-size:10px;
+}
+
+table {
+    border-collapse:collapse;
+    width:100%;
+    font-size:12px;
+}
+
+th,td {
+    text-align:left;
+    padding:9px;
+    border-bottom:1px solid var(--border);
+}
+
+th {
+    background:#f3f7f4;
+}
+
+.table-wrap {
+    overflow-x:auto;
+}
+
+.trip {
+    border:1px solid var(--border);
+    border-radius:9px;
+    padding:14px;
+    margin-bottom:12px;
+}
+
+.trip h4 {
+    margin:0 0 9px;
+}
+
+.trip-route {
+    background:var(--light);
+    padding:10px;
+    border-radius:7px;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.leg {
+    background:#f7f9f7;
+    border-left:3px solid #8ab99a;
+    padding:9px 11px;
+    margin:8px 0;
+    font-size:12px;
+}
+
+.leg p {
+    color:#5b6a60;
+    margin:3px 0;
+}
+
+.map-link,.downloads a {
+    display:inline-block;
+    border:1px solid #c5ddcc;
+    color:var(--green);
+    padding:9px 11px;
+    border-radius:7px;
+    margin-top:9px;
+    font-size:12px;
+    text-decoration:none;
+}
+
+.footer {
+    text-align:center;
+    color:var(--muted);
+    font-size:11px;
+    padding:25px 0;
+}
+
+@media(max-width:550px) {
+    .hero { padding:19px; }
+    .hero h2 { font-size:21px; }
+    .card { padding:16px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container brand">
+        <div class="logo">🌱</div>
+        <div>
+            <h1>AgroLogística</h1>
+            <p>Distribución agrícola desde Achacachi</p>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <h2>¿A dónde puedes llevar tu cosecha?</h2>
+        <p>
+            Indica qué producto tienes y cuántos camiones puedes utilizar.
+            El modelo analizará los mercados y recomendará ciudades
+            convenientes para vender.
+        </p>
+        <div class="origin">📍 Origen: Achacachi, La Paz</div>
+    </section>
+
+    <div class="notice">
+        Los mercados se evalúan automáticamente según la distancia,
+        demanda y margen estimado. La demanda y los precios actuales
+        son simulados, por lo que las recomendaciones son demostrativas.
+    </div>
+
+    <form id="form">
+
+        <section class="card">
+            <div class="question">
+                <span class="number">1</span>
+                <h3>¿Qué producto quieres vender?</h3>
+            </div>
+
+            <p class="description">
+                Selecciona el producto de tu cosecha.
+            </p>
+
+            <div class="field">
+                <select id="product" required></select>
+            </div>
+
+            <div class="production">
+                <span>Producción registrada en la campaña más reciente</span>
+                <strong id="productionValue">Cargando...</strong>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="question">
+                <span class="number">2</span>
+                <h3>¿Cuántas toneladas tienes para transportar?</h3>
+            </div>
+
+            <p class="description">
+                Una tonelada equivale a 1.000 kilogramos.
+            </p>
+
+            <div class="field">
+                <input id="quantity" type="number"
+                       min="0.1" step="0.1" value="30" required>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="question">
+                <span class="number">3</span>
+                <h3>¿Cuánto puede cargar cada camión?</h3>
+            </div>
+
+            <p class="description">
+                Escoge la capacidad aproximada de tu transporte.
+            </p>
+
+            <div class="capacity">
+                <label>
+                    <input type="radio" name="capacity" value="10">
+                    <strong>10 t</strong>
+                    <small>10.000 kg</small>
+                </label>
+
+                <label>
+                    <input type="radio" name="capacity" value="15" checked>
+                    <strong>15 t</strong>
+                    <small>15.000 kg</small>
+                </label>
+
+                <label>
+                    <input type="radio" name="capacity" value="20">
+                    <strong>20 t</strong>
+                    <small>20.000 kg</small>
+                </label>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="question">
+                <span class="number">4</span>
+                <h3>¿Cuántos camiones tienes disponibles?</h3>
+            </div>
+
+            <p class="description">
+                Indica cuántos camiones puedes utilizar.
+            </p>
+
+            <div class="field">
+                <input id="trucks" type="number"
+                       min="1" step="1" value="2" required>
+            </div>
+
+            <p class="hint">
+                No necesitas seleccionar ciudades. El modelo buscará
+                automáticamente los mercados urbanos más convenientes
+                de Bolivia.
+            </p>
+
+            <button class="primary" id="submit" type="submit">
+                Recomendar ciudades y calcular mis viajes
+            </button>
+
+            <div id="loading">
+                Comparando ciudades y calculando recorridos...
+            </div>
+
+            <div id="error"></div>
+        </section>
+
+    </form>
+
+    <section id="results">
+
+        <h2 class="result-title">Recomendación de venta</h2>
+        <p class="subtitle" id="resultMeta"></p>
+
+        <div class="decision" id="decision"></div>
+
+        <div class="result-card">
+            <h3>Resumen de tu transporte</h3>
+            <div class="metrics" id="metrics"></div>
+        </div>
+
+        <div class="result-card">
+            <h3>¿En qué ciudades te conviene vender?</h3>
+            <p class="subtitle">
+                Mercados recomendados ordenados por cercanía
+                entre los destinos que reciben producto.
+            </p>
+            <div class="table-wrap" id="marketTable"></div>
+        </div>
+
+        <div class="result-card">
+            <h3>Recorridos de los camiones</h3>
+            <div id="tripTable"></div>
+        </div>
+
+        <div class="result-card">
+            <h3>Guardar resultados</h3>
+            <div class="downloads" id="downloads"></div>
+        </div>
+
+    </section>
+
+    <footer class="footer">
+        AgroLogística · Achacachi → Mercados urbanos de Bolivia
+    </footer>
+
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+
+let catalog = null;
+
+const fmt = (n,d=1) => Number(n||0).toLocaleString('es-BO',{
+    minimumFractionDigits:d,
+    maximumFractionDigits:d
+});
+
+const money = n => 'Bs '+fmt(n,2);
+
+function safe(value) {
+    return String(value??'').replace(/[&<>"']/g,c=>({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#039;'
+    })[c]);
+}
+
+function timeText(minutes) {
+    const total=Math.round(Number(minutes||0));
+    const hours=Math.floor(total/60);
+    const mins=total%60;
+
+    if(!hours) return `${mins} min`;
+    if(!mins) return `${hours} h`;
+    return `${hours} h ${mins} min`;
+}
+
+function showError(message) {
+    $('error').textContent=message;
+    $('error').style.display='block';
+}
+
+async function loadCatalog() {
+
+    const response=await fetch('/api/catalogo');
+    const data=await response.json();
+
+    if(!response.ok) {
+        throw new Error(data.error||'No se pudieron cargar los datos.');
+    }
+
+    catalog=data;
+
+    $('product').innerHTML=data.products.map(product=>`
+        <option value="${safe(product)}">
+            ${product==='Prod_7'?'Otro producto':safe(product)}
+        </option>
+    `).join('');
+
+    $('product').value='Papa';
+
+    updateProduction();
+}
+
+function updateProduction() {
+
+    if(!catalog) return;
+
+    const product=$('product').value;
+
+    const production=Number(
+        catalog.production[product]||0
+    );
+
+    $('productionValue').textContent=
+        fmt(production)+' toneladas';
+
+    $('quantity').max=production;
+
+    if(Number($('quantity').value)>production) {
+        $('quantity').value=production;
+    }
+}
+
+$('product').addEventListener('change',updateProduction);
+
+function createTable(headers,rows) {
+
+    if(!rows.length) {
+        return '<p>No se encontraron ciudades recomendadas.</p>';
+    }
+
+    return `
+        <table>
+            <thead>
+                <tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr>
+            </thead>
+            <tbody>
+                ${rows.map(row=>`
+                    <tr>${row.map(cell=>`<td>${cell}</td>`).join('')}</tr>
+                `).join('')}
+            </tbody>
+        </table>
+    `;
+}
+
+function renderResults(data) {
+
+    const s=data.summary;
+
+    $('results').style.display='block';
+
+    $('resultMeta').textContent=
+        `${s.Producto} · Campaña ${s.Campana} · Salida desde Achacachi`;
+
+    const delivered=Number(s.Entregado_t||0);
+    const remaining=Number(s.Sin_asignar_t||0);
+
+    let message;
+
+    if(delivered<=0) {
+        message='No se encontraron mercados con una propuesta rentable. Revisa los datos de demanda y precios.';
+    } else if(remaining>0.01) {
+        message=
+            `Se encontró una distribución para ${fmt(delivered)} toneladas. `+
+            `Quedaron ${fmt(remaining)} toneladas sin destino.`;
+    } else {
+        message=
+            `¡Se encontraron mercados para toda tu carga! `+
+            `Se recomiendan ${data.markets.filter(m=>Number(m.Entregado_t)>0).length} ciudades `+
+            `y se necesitan ${fmt(s.Viajes_estimados,0)} viajes.`;
+    }
+
+    $('decision').textContent=message;
+
+    $('decision').className=
+        'decision'+(remaining>0.01||delivered<=0?' warning':'');
+
+    const metrics=[
+        ['Cantidad a transportar',fmt(s.Entregado_t)+' t','Producto asignado'],
+        ['Viajes necesarios',fmt(s.Viajes_estimados,0),'Cargas de camión'],
+        ['Distancia total',fmt(s.Distancia_total_km)+' km','Todos los recorridos'],
+        ['Tiempo acumulado',timeText(Number(s.Horas_ruta_totales_estimadas)*60),'Tiempo en carretera'],
+        ['Combustible',fmt(s.Combustible_total_l)+' L','Estimación'],
+        ['Costo de diésel',money(s.Costo_diesel_total_bs),'Gasto estimado']
+    ];
+
+    $('metrics').innerHTML=metrics.map(m=>`
+        <div class="metric">
+            <span>${safe(m[0])}</span>
+            <strong>${safe(m[1])}</strong>
+            <small>${safe(m[2])}</small>
+        </div>
+    `).join('');
+
+
+    // Mostrar solamente ciudades que recibieron producto.
+    // Ordenar primero por cercanía desde Achacachi.
+    const recommended=data.markets
+        .filter(m=>Number(m.Entregado_t)>0)
+        .sort((a,b)=>
+            Number(a.Distancia_desde_Achacachi_km||Infinity)
+            -
+            Number(b.Distancia_desde_Achacachi_km||Infinity)
+        );
+
+    $('marketTable').innerHTML=createTable(
+        [
+            'Ciudad recomendada',
+            'Producto a enviar',
+            'Distancia desde Achacachi',
+            'Tiempo directo aproximado'
+        ],
+        recommended.map(m=>[
+            safe(m.Mercado),
+            fmt(m.Entregado_t)+' t',
+            m.Distancia_desde_Achacachi_km
+                ? fmt(m.Distancia_desde_Achacachi_km)+' km'
+                : 'No disponible',
+            m.Tiempo_desde_Achacachi_h
+                ? fmt(Number(m.Tiempo_desde_Achacachi_h)*60,0)+' min'
+                : 'No disponible'
+        ])
+    );
+
+
+    // Detalle de cada viaje.
+    $('tripTable').innerHTML=data.trips.map(trip=>{
+
+        const legs=trip.Tramos||[];
+
+        const route=legs.length
+            ? legs.map(l=>safe(l.origen))
+                .concat(safe(legs[legs.length-1].destino))
+                .join(' → ')
+            : 'Achacachi → '+safe(trip.Entregas)+' → Achacachi';
+
+        const legHTML=legs.map((leg,index)=>`
+            <div class="leg">
+                <strong>
+                    ${index+1}. ${safe(leg.origen)}
+                    → ${safe(leg.destino)}
+                </strong>
+                <p>Distancia: ${fmt(leg.distancia_km)} km</p>
+                <p>Tiempo: ${timeText(leg.tiempo_min)}</p>
+                <p>Carretera: ${safe(leg.resumen_carreteras)}</p>
+            </div>
+        `).join('');
+
+        return `
+            <div class="trip">
+                <h4>🚚 Viaje ${fmt(trip.Viaje,0)}</h4>
+
+                <div class="trip-route">${route}</div>
+
+                <div class="metrics">
+                    <div class="metric">
+                        <span>Carga</span>
+                        <strong>${fmt(trip.Carga_t)} t</strong>
+                    </div>
+                    <div class="metric">
+                        <span>Distancia</span>
+                        <strong>${fmt(trip.Distancia_ida_vuelta_km)} km</strong>
+                    </div>
+                    <div class="metric">
+                        <span>Duración estimada</span>
+                        <strong>${timeText(Number(trip.Tiempo_estimado_h)*60)}</strong>
+                    </div>
+                    <div class="metric">
+                        <span>Combustible</span>
+                        <strong>${fmt(trip.Combustible_l)} L</strong>
+                    </div>
+                </div>
+
+                <h4 style="margin-top:14px">Camino por tramos</h4>
+
+                ${legHTML||'<p>No se pudo obtener el detalle de carretera.</p>'}
+
+                ${trip.Mapa_URL?`
+                    <a class="map-link"
+                       href="${safe(trip.Mapa_URL)}"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                       📍 Ver recorrido en Google Maps
+                    </a>
+                `:''}
+            </div>
+        `;
+    }).join('');
+
+
+    const labels={
+        summary:'Resumen',
+        trips:'Viajes',
+        markets:'Entregas por ciudad',
+        matrix:'Matriz de distancias',
+        report:'Informe completo',
+        warnings:'Advertencias'
+    };
+
+    $('downloads').innerHTML=Object.entries(data.files).map(
+        ([key,file])=>`
+            <a href="/descargar/${encodeURIComponent(file)}">
+                Descargar ${labels[key]||key}
+            </a>
+        `
+    ).join('');
+
+    $('results').scrollIntoView({
+        behavior:'smooth',
+        block:'start'
+    });
+}
+
+
+$('form').addEventListener('submit',async event=>{
+
+    event.preventDefault();
+
+    $('error').style.display='none';
+
+    const capacity=Number(
+        document.querySelector('input[name="capacity"]:checked').value
+    );
+
+    // El programa evalúa automáticamente todos los mercados del catálogo.
+    const payload={
+        campaign:catalog.selected_campaign,
+        product:$('product').value,
+        quantity_t:Number($('quantity').value),
+        truck_capacity_t:capacity,
+        trucks_available:Number($('trucks').value),
+
+        deadline_days:7,
+        hours_per_day:8,
+
+        route_mode:'osrm',
+
+        demo_speed:Number(
+            catalog.defaults.velocidad_demo_kmh||60
+        ),
+
+        diesel_price:Number(
+            catalog.defaults.precio_diesel_bs_litro||17.95
+        ),
+
+        fuel_consumption:Number(
+            catalog.defaults.consumo_litros_100km||23
+        ),
+
+        markets:catalog.markets.map(m=>m.id),
+
+        accept_simulated:true
+    };
+
+    $('submit').disabled=true;
+    $('loading').style.display='block';
+
+    try {
+
+        const response=await fetch('/api/planificar',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(payload)
+        });
+
+        const result=await response.json();
+
+        if(!response.ok) {
+            throw new Error(
+                result.error||'No se pudo calcular la planificación.'
+            );
+        }
+
+        renderResults(result);
+
+    } catch(error) {
+
+        showError(error.message);
+
+    } finally {
+
+        $('submit').disabled=false;
+        $('loading').style.display='none';
+    }
+});
+
+
+loadCatalog().catch(error=>showError(error.message));
+</script>
+
+</body>
+</html>

@@ -478,7 +478,13 @@ html {
   outline-offset: 2px;
 }
 
-.camera-module-link {
+.module-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.module-link {
   display: inline-flex;
   min-height: 38px;
   align-items: center;
@@ -495,9 +501,17 @@ html {
   transition: background-color .2s ease, transform .2s ease;
 }
 
-.camera-module-link:hover { background: #354e3d; transform: translateY(-1px); }
-.camera-module-link:focus-visible { outline: 3px solid #c7473e; outline-offset: 2px; }
-.camera-module-link svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+.harvest-module-link {
+  color: #fffaf0;
+  background: #9a6429;
+  box-shadow: 0 4px 12px rgba(94, 58, 22, .22);
+}
+
+.camera-module-link:hover { background: #354e3d; }
+.harvest-module-link:hover { background: #75491f; }
+.module-link:hover { transform: translateY(-1px); }
+.module-link:focus-visible { outline: 3px solid #c7473e; outline-offset: 2px; }
+.module-link svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
 
 .phone-button::before,
 .phone-button::after {
@@ -583,14 +597,19 @@ html {
     font-size: .67rem;
   }
 
-  .camera-module-link {
+  .module-links {
+    flex: 0 0 auto;
+    gap: 5px;
+  }
+
+  .module-link {
     flex: 0 0 42px;
     width: 42px;
     padding: 0;
     justify-content: center;
   }
 
-  .camera-module-link span {
+  .module-link span {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -635,6 +654,20 @@ html {
 
   .experience-form {
     padding-top: 0;
+  }
+}
+
+@media (max-width: 430px) {
+  .weather-toolbar .weather-options b {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .weather-toolbar .weather-options button {
+    padding: 5px;
   }
 }
 

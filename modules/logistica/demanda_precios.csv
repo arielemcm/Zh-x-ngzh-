@@ -1,0 +1,71 @@
+Producto,Mercado,Demanda_max_t,Precio_venta_bs_t,Costo_produccion_bs_t,Costo_manejo_bs_t,Calidad_dato,Fuente_observaciones
+Papa,El Alto,135.0,3078.0,1900,55,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Papa,La Paz,150.0,3135.0,1900,55,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Papa,Oruro,60.0,2850.0,1900,55,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Papa,Cochabamba,105.0,3021.0,1900,55,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Papa,Sucre,52.5,2964.0,1900,55,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Papa,Potosi,45.0,2821.5,1900,55,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Papa,Tarija,52.5,3106.5,1900,55,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Papa,Santa Cruz de la Sierra,150.0,3192.0,1900,55,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Papa,Trinidad,37.5,3220.5,1900,55,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Papa,Cobija,26.2,3306.0,1900,55,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Alfalfa,El Alto,45.0,2214.0,1200,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Alfalfa,La Paz,50.0,2255.0,1200,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Alfalfa,Oruro,20.0,2050.0,1200,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Alfalfa,Cochabamba,35.0,2173.0,1200,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Alfalfa,Sucre,17.5,2132.0,1200,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Alfalfa,Potosi,15.0,2029.5,1200,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Alfalfa,Tarija,17.5,2234.5,1200,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Alfalfa,Santa Cruz de la Sierra,50.0,2296.0,1200,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Alfalfa,Trinidad,12.5,2316.5,1200,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Alfalfa,Cobija,8.8,2378.0,1200,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Avena,El Alto,39.6,2646.0,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Avena,La Paz,44.0,2695.0,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Avena,Oruro,17.6,2450.0,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Avena,Cochabamba,30.8,2597.0,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Avena,Sucre,15.4,2548.0,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Avena,Potosi,13.2,2425.5,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Avena,Tarija,15.4,2670.5,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Avena,Santa Cruz de la Sierra,44.0,2744.0,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Avena,Trinidad,11.0,2768.5,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Avena,Cobija,7.7,2842.0,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Haba,El Alto,32.4,5076.0,2800,45,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Haba,La Paz,36.0,5170.0,2800,45,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Haba,Oruro,14.4,4700.0,2800,45,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Haba,Cochabamba,25.2,4982.0,2800,45,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Haba,Sucre,12.6,4888.0,2800,45,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Haba,Potosi,10.8,4653.0,2800,45,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Haba,Tarija,12.6,5123.0,2800,45,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Haba,Santa Cruz de la Sierra,36.0,5264.0,2800,45,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Haba,Trinidad,9.0,5311.0,2800,45,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Haba,Cobija,6.3,5452.0,2800,45,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Oca,El Alto,36.0,3402.0,1800,40,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Oca,La Paz,40.0,3465.0,1800,40,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Oca,Oruro,16.0,3150.0,1800,40,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Oca,Cochabamba,28.0,3339.0,1800,40,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Oca,Sucre,14.0,3276.0,1800,40,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Oca,Potosi,12.0,3118.5,1800,40,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Oca,Tarija,14.0,3433.5,1800,40,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Oca,Santa Cruz de la Sierra,40.0,3528.0,1800,40,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Oca,Trinidad,10.0,3559.5,1800,40,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Oca,Cobija,7.0,3654.0,1800,40,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Cebolla,El Alto,43.2,3834.0,2100,50,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Cebolla,La Paz,48.0,3905.0,2100,50,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Cebolla,Oruro,19.2,3550.0,2100,50,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Cebolla,Cochabamba,33.6,3763.0,2100,50,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Cebolla,Sucre,16.8,3692.0,2100,50,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Cebolla,Potosi,14.4,3514.5,2100,50,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Cebolla,Tarija,16.8,3869.5,2100,50,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Cebolla,Santa Cruz de la Sierra,48.0,3976.0,2100,50,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Cebolla,Trinidad,12.0,4011.5,2100,50,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Cebolla,Cobija,8.4,4118.0,2100,50,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Prod_7,El Alto,18.0,2646.0,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Prod_7,La Paz,20.0,2695.0,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Prod_7,Oruro,8.0,2450.0,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Prod_7,Cochabamba,14.0,2597.0,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Prod_7,Sucre,7.0,2548.0,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Prod_7,Potosi,6.0,2425.5,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Prod_7,Tarija,7.0,2670.5,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Prod_7,Santa Cruz de la Sierra,20.0,2744.0,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Prod_7,Trinidad,5.0,2768.5,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados
+Prod_7,Cobija,3.5,2842.0,1500,35,SIMULADO,Valores demostrativos; reemplazar con datos observados

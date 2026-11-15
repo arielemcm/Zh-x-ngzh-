@@ -10,6 +10,8 @@ proyecto/
 ├── assets/                      Recursos visuales compartidos
 ├── modules/
 │   ├── diagnostico-hojas/       Cámara y análisis de hojas
+│   ├── formulario-cosecha/      Destinos y transporte de la cosecha
+│   ├── logistica/               Motor y datos de planificación logística
 │   └── mapa/                    Mapa y procesamiento geográfico
 ├── data/
 │   └── agricultura/             Datos consumidos por la aplicación
@@ -29,6 +31,7 @@ proyecto/
 
 - La raíz contiene solamente entradas y configuración global: `index.html`, `Dockerfile`, `compose.yaml`, el lanzador y los archivos de documentación general.
 - `modules/` contiene funciones completas que pueden evolucionar de forma independiente, pero se integran con la portada.
+- `modules/logistica/` contiene el algoritmo de distribución y sus fuentes tabulares; su `env/`, `__pycache__` y los resultados generados no forman parte del código versionado.
 - `data/` guarda información que la aplicación lee. No contiene imágenes de diseño ni resultados temporales.
 - `models/` guarda modelos de aprendizaje automático originales. Las versiones preparadas para el navegador permanecen dentro del módulo que las consume.
 - `docs/evidencias/` conserva capturas; ninguna captura debe ser necesaria para ejecutar la aplicación.
@@ -48,6 +51,7 @@ proyecto/
 
 - Portada: `/index.html`
 - Diagnóstico: `/modules/diagnostico-hojas/`
+- Formulario de cosecha: `/modules/formulario-cosecha/index.html`
 - Mapa integrado: `/modules/mapa/map-data.js` y `/modules/mapa/script.js`
 - Datos agrícolas: `/data/agricultura/informacion_agricola_la_paz.json`
 - Modelo del servidor: `/models/papa-clasificador-keras/`
