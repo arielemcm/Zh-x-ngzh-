@@ -1,0 +1,4 @@
+Mes,Piso,Semilla,Veredicto,Lluvia,Sequia,Helada,NDVI_Pred,Erosion
+2026-12,Puna,Papa,✅ APTO (Papa),Adecuada (103.9 mm),Sin sequía (0.64),Sin helada (5.6°C),0.532,Riesgo eólico moderado (6.149%)
+2027-01,Puna,Papa,✅ APTO (Papa),Adecuada (114.0 mm),Sin sequía (0.72),Sin helada (5.5°C),0.549,Riesgo eólico moderado (6.149%)
+2027-02,Puna,Papa,✅ APTO (Papa),Adecuada (83.2 mm),Sin sequía (0.73),Sin helada (5.3°C),0.578,Riesgo eólico moderado (6.149%)
