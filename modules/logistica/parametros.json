@@ -1,0 +1,14 @@
+
+{
+  "campana": "2024-2025",
+  "porcentaje_comercializable": 10.0,
+  "capacidad_camion_t": 15.0,
+  "consumo_litros_100km": 23.0,
+  "precio_diesel_bs_litro": 17.95,
+  "costo_fijo_por_viaje_bs": 0.0,
+  "factor_tiempo_camion_osrm": 1.15,
+  "velocidad_demo_kmh": 100.0,
+  "factor_desvio_demo_carretera": 1.30,
+  "max_viajes_por_producto": 5000,
+  "producto_desconocido": "Prod_7"
+}

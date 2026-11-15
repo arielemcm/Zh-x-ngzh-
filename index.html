@@ -77,10 +77,16 @@
             <button type="button" data-weather-choice="drizzle" aria-pressed="true"><span class="weather-icon icon-drizzle"></span><b>Llovizna</b></button>
             <button type="button" data-weather-choice="storm" aria-pressed="false"><span class="weather-icon icon-storm"></span><b>Lluvia intensa</b></button>
           </div>
-          <a class="camera-module-link" href="modules/diagnostico-hojas/index.html" aria-label="Abrir el m&oacute;dulo para revisar hojas de papa">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12c0-5 4-8 13-8 0 9-3 13-8 13-3 0-5-2-5-5Z"></path><path d="M4 20c2-5 5-8 10-11"></path></svg>
-            <span>Revisar hoja</span>
-          </a>
+          <nav class="module-links" aria-label="Herramientas agr&iacute;colas">
+            <a class="module-link camera-module-link" href="modules/diagnostico-hojas/index.html" aria-label="Abrir el m&oacute;dulo para revisar hojas de papa">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12c0-5 4-8 13-8 0 9-3 13-8 13-3 0-5-2-5-5Z"></path><path d="M4 20c2-5 5-8 10-11"></path></svg>
+              <span>Revisar hoja</span>
+            </a>
+            <a class="module-link harvest-module-link" href="modules/formulario-cosecha/index.html" aria-label="Abrir el formulario para llevar y vender la cosecha">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v10H3Z"></path><path d="M14 10h4l3 3v3h-7Z"></path><circle cx="7" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="M5 6V4h6v2"></path></svg>
+              <span>Llevar cosecha</span>
+            </a>
+          </nav>
         </section>
 
         <div class="progress" aria-hidden="true"><span></span></div>

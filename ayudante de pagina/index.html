@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Prototipo de ayudante con mascota sapo." />
+    <title>Ayudante sapo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <aside class="frog-assistant" aria-label="Ayudante sapo">
+      <div class="speech-bubble" id="speechBubble" role="status" aria-live="polite" aria-hidden="true">
+        <button class="close-bubble" id="closeBubble" aria-label="Cerrar mensaje">×</button>
+        <p id="typedMessage"></p><span class="cursor" aria-hidden="true">|</span>
+      </div>
+      <button class="frog-button" id="frogButton" aria-label="Abrir mensaje del ayudante" aria-expanded="false" aria-controls="speechBubble">
+        <span class="frog-halo" aria-hidden="true"></span>
+        <span class="frog-stage" aria-hidden="true">
+          <img id="frogSprite" src="assets/sapo3-transparent.png" alt="" />
+        </span>
+        <span class="tap-hint">Cultívame</span>
+      </button>
+    </aside>
+
+    <script src="script.js"></script>
+  </body>
+</html>

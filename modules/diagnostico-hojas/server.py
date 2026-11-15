@@ -5,6 +5,7 @@ import io
 import json
 import mimetypes
 import os
+import sys
 import tempfile
 import threading
 import uuid
@@ -15,13 +16,23 @@ from email.parser import BytesParser
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import quote, unquote, urlparse
+from urllib.parse import parse_qs, quote, unquote, urlparse
 
 from PIL import Image, ImageOps, UnidentifiedImageError
 
 
 BASE_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = BASE_DIR.parents[1]
+if str(PROJECT_DIR) not in sys.path:
+    sys.path.insert(0, str(PROJECT_DIR))
+
+try:
+    from modules.logistica import main as logistics_app
+    _LOGISTICS_IMPORT_ERROR = None
+except Exception as error:
+    logistics_app = None
+    _LOGISTICS_IMPORT_ERROR = str(error)
+
 MIME_OVERRIDES = {
     ".bin": "application/octet-stream",
     ".css": "text/css",
@@ -38,6 +49,7 @@ UPLOAD_DIR = BASE_DIR / "uploads"
 MODEL_DIR = PROJECT_DIR / "models" / "papa-clasificador-keras"
 MODEL_LABELS_FILE = BASE_DIR / "model-labels.json"
 MAX_UPLOAD_BYTES = 15 * 1024 * 1024
+MAX_LOGISTICS_REQUEST_BYTES = 64 * 1024
 ALLOWED_IMAGE_TYPES = {
     "image/jpeg": ".jpg",
     "image/png": ".png",
@@ -229,6 +241,40 @@ def validate_image(media_type: str, payload: bytes) -> str:
     return ALLOWED_IMAGE_TYPES[media_type]
 
 
+def read_json_request(handler: BaseHTTPRequestHandler) -> dict:
+    content_type = handler.headers.get("Content-Type", "").split(";", 1)[0].strip().lower()
+    if content_type != "application/json":
+        raise ValueError("La planificación debe enviarse como application/json.")
+    try:
+        content_length = int(handler.headers.get("Content-Length", "0"))
+    except ValueError as error:
+        raise ValueError("El tamaño de la solicitud no es válido.") from error
+    if content_length <= 0 or content_length > MAX_LOGISTICS_REQUEST_BYTES:
+        raise ValueError("La solicitud está vacía o supera el tamaño permitido.")
+    try:
+        data = json.loads(handler.rfile.read(content_length).decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ValueError("No se pudo interpretar la planificación enviada.") from error
+    if not isinstance(data, dict):
+        raise ValueError("La planificación debe ser un objeto JSON.")
+    return data
+
+
+def allowed_local_origin(origin: str | None) -> str | None:
+    """Allow the harvest form to use the API from another local development port."""
+    if origin == "null":
+        return origin
+    if not origin:
+        return None
+    parsed_origin = urlparse(origin)
+    if (
+        parsed_origin.scheme in {"http", "https"}
+        and parsed_origin.hostname in {"127.0.0.1", "localhost", "::1"}
+    ):
+        return origin
+    return None
+
+
 class Handler(BaseHTTPRequestHandler):
     def send_bytes(self, payload: bytes, content_type: str, status: int = 200) -> None:
         self.send_response(status)
@@ -236,6 +282,11 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(payload)))
         self.send_header("Cache-Control", "no-store")
         self.send_header("X-Content-Type-Options", "nosniff")
+        if urlparse(self.path).path.startswith("/api/"):
+            cors_origin = allowed_local_origin(self.headers.get("Origin"))
+            if cors_origin:
+                self.send_header("Access-Control-Allow-Origin", cors_origin)
+                self.send_header("Vary", "Origin")
         self.end_headers()
         self.wfile.write(payload)
 
@@ -260,8 +311,43 @@ class Handler(BaseHTTPRequestHandler):
             resolved_type = f"{resolved_type}; charset=utf-8"
         self.send_bytes(target.read_bytes(), resolved_type)
 
-    def do_GET(self) -> None:
+    def do_OPTIONS(self) -> None:
         path = urlparse(self.path).path
+        if not path.startswith("/api/logistica/"):
+            self.send_error(HTTPStatus.NOT_FOUND)
+            return
+
+        requested_origin = self.headers.get("Origin")
+        cors_origin = allowed_local_origin(requested_origin)
+        if requested_origin and not cors_origin:
+            self.send_error(HTTPStatus.FORBIDDEN)
+            return
+
+        self.send_response(HTTPStatus.NO_CONTENT)
+        if cors_origin:
+            self.send_header("Access-Control-Allow-Origin", cors_origin)
+            self.send_header("Vary", "Origin")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.send_header("Access-Control-Max-Age", "600")
+        self.send_header("Content-Length", "0")
+        self.end_headers()
+
+    def do_GET(self) -> None:
+        parsed_url = urlparse(self.path)
+        path = parsed_url.path
+        if path in {"/formulario-cosecha", "/formulario-cosecha/"} or path.startswith(
+            "/formulario-cosecha/"
+        ):
+            suffix = path.removeprefix("/formulario-cosecha")
+            target = f"/modules/formulario-cosecha{suffix or '/'}"
+            if parsed_url.query:
+                target = f"{target}?{parsed_url.query}"
+            self.send_response(HTTPStatus.FOUND)
+            self.send_header("Location", target)
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return
         if path in {"/", "/index.html"}:
             self.serve_file(PROJECT_DIR / "index.html", "text/html; charset=utf-8")
             return
@@ -305,14 +391,41 @@ class Handler(BaseHTTPRequestHandler):
             "/css/",
             "/js/",
             "/modules/mapa/",
+            "/modules/formulario-cosecha/",
             "/data/agricultura/",
+            "/ayudante%20de%20pagina/",
+            "/ayudante de pagina/",
         ))
         if project_asset:
-            target = (PROJECT_DIR / path.lstrip("/")).resolve()
+            target = (PROJECT_DIR / unquote(path.lstrip("/"))).resolve()
             if not target.is_relative_to(PROJECT_DIR.resolve()):
                 self.send_error(HTTPStatus.FORBIDDEN)
                 return
             self.serve_file(target)
+            return
+        if path == "/api/logistica/catalogo":
+            if logistics_app is None:
+                self.send_json(
+                    {"ok": False, "error": f"El motor logístico no está disponible: {_LOGISTICS_IMPORT_ERROR}"},
+                    HTTPStatus.SERVICE_UNAVAILABLE,
+                )
+                return
+            try:
+                campaign = parse_qs(parsed_url.query).get("campana", [None])[0]
+                catalog = logistics_app.get_catalog(campaign)
+                self.send_json({"ok": True, **catalog})
+            except (OSError, ValueError, RuntimeError, json.JSONDecodeError) as error:
+                self.send_json({"ok": False, "error": str(error)}, HTTPStatus.BAD_REQUEST)
+            return
+        if path == "/api/logistica/estado":
+            self.send_json(
+                {
+                    "ok": logistics_app is not None,
+                    "available": logistics_app is not None,
+                    "error": _LOGISTICS_IMPORT_ERROR,
+                },
+                HTTPStatus.OK if logistics_app is not None else HTTPStatus.SERVICE_UNAVAILABLE,
+            )
             return
         if path == "/api/uploads":
             files = sorted(
@@ -360,6 +473,29 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:
         path = urlparse(self.path).path
+        if path == "/api/logistica/planificar":
+            if logistics_app is None:
+                self.send_json(
+                    {"ok": False, "error": f"El motor logístico no está disponible: {_LOGISTICS_IMPORT_ERROR}"},
+                    HTTPStatus.SERVICE_UNAVAILABLE,
+                )
+                return
+            try:
+                request_data = read_json_request(self)
+                result = logistics_app.run_planning(
+                    request_data,
+                    persist_results=False,
+                    allow_route_fallback=True,
+                )
+                self.send_json({"ok": True, **result})
+            except ValueError as error:
+                self.send_json({"ok": False, "error": str(error)}, HTTPStatus.BAD_REQUEST)
+            except Exception as error:
+                self.send_json(
+                    {"ok": False, "error": f"No se pudo completar la planificación: {error}"},
+                    HTTPStatus.SERVICE_UNAVAILABLE,
+                )
+            return
         if path not in {"/api/uploads", "/api/predict"}:
             self.send_error(HTTPStatus.NOT_FOUND)
             return

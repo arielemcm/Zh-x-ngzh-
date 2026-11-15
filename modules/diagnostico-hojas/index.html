@@ -10,11 +10,23 @@
   <title>Detección de enfermedades en plantas de papa</title>
   <link rel="stylesheet" href="styles.css?v=2">
   <link rel="stylesheet" href="experience.css?v=3">
+  <link rel="stylesheet" href="../../css/frog-assistant.css">
+  <link rel="stylesheet" href="../../css/module-navigation.css">
 </head>
 <body data-camera-state="idle">
   <main class="app-shell">
     <header class="hero">
       <a class="module-back" href="../../index.html"><span aria-hidden="true">&larr;</span> Volver al panel inicial</a>
+      <nav class="page-module-nav" aria-label="Herramientas agr&iacute;colas">
+        <a class="page-module-nav__link" href="../diagnostico-hojas/index.html" aria-current="page" aria-label="Revisar hoja, p&aacute;gina actual">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12c0-5 4-8 13-8 0 9-3 13-8 13-3 0-5-2-5-5Z"></path><path d="M4 20c2-5 5-8 10-11"></path></svg>
+          <span>Revisar hoja</span>
+        </a>
+        <a class="page-module-nav__link page-module-nav__link--harvest" href="../formulario-cosecha/index.html" aria-label="Ir a Llevar cosecha">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v10H3Z"></path><path d="M14 10h4l3 3v3h-7Z"></path><circle cx="7" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="M5 6V4h6v2"></path></svg>
+          <span>Llevar cosecha</span>
+        </a>
+      </nav>
       <div class="hero__copy">
         <div class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 48 48"><path d="M9 15h8l3-5h8l3 5h8a5 5 0 0 1 5 5v17a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V20a5 5 0 0 1 5-5Z"/><circle cx="24" cy="28" r="8"/><path d="M31 10c1-5 5-7 10-6-1 5-4 8-10 6Z"/></svg>
@@ -128,8 +140,25 @@
       </div>
     </section>
   </main>
+  <aside class="frog-assistant frog-assistant--choices" data-frog-assistant data-message="Escoge una opci&oacute;n: Encender c&aacute;mara o Subir imagen." data-camera-message="Enfoca con la c&aacute;mara a la hoja de la planta y conocer&aacute;s su resultado de salud." data-upload-message="Busca la imagen en los archivos de tu dispositivo, selecci&oacute;nala y s&uacute;bela. Conocer&aacute;s su resultado de salud." data-resting-sprite="../../ayudante%20de%20pagina/assets/sapo3-transparent.png" data-talking-sprite="../../ayudante%20de%20pagina/assets/sapo4-transparent.png" aria-label="Ayudante sapo">
+    <div class="frog-assistant__bubble" id="frog-speech-bubble" aria-hidden="true">
+      <button class="frog-assistant__close" type="button" aria-label="Cerrar mensaje">&times;</button>
+      <p class="frog-assistant__message" aria-hidden="true"></p><span class="frog-assistant__cursor" aria-hidden="true">|</span>
+      <p class="frog-assistant__announcement frog-assistant__sr-only" role="status" aria-live="polite"></p>
+      <div class="frog-assistant__actions" aria-label="Opciones para revisar la hoja">
+        <button class="frog-assistant__action" type="button" data-frog-action="camera">Encender c&aacute;mara</button>
+        <button class="frog-assistant__action frog-assistant__action--secondary" type="button" data-frog-action="upload">Subir imagen</button>
+      </div>
+    </div>
+    <button class="frog-assistant__button" type="button" aria-label="Abrir mensaje del ayudante" aria-expanded="false" aria-controls="frog-speech-bubble">
+      <span class="frog-assistant__halo" aria-hidden="true"></span>
+      <span class="frog-assistant__stage" aria-hidden="true"><img class="frog-assistant__image" src="../../ayudante%20de%20pagina/assets/sapo3-transparent.png" alt=""></span>
+      <span class="frog-assistant__hint">Preg&uacute;ntame</span>
+    </button>
+  </aside>
   <script src="vendor/tf.min.js"></script>
-  <script src="modelo-web/model-embedded.js"></script>
+  <script src="modelo-web/model-embedded.js?v=2"></script>
   <script src="app.js?v=4"></script>
+  <script src="../../js/frog-assistant.js"></script>
 </body>
 </html>
