@@ -39,6 +39,8 @@ Para usar todas las funciones, inicia ambos servidores en terminales distintas. 
 ## Instalación local
 
 Desde la carpeta raíz del proyecto, crea el entorno y carga las dependencias de ambos servidores:
+pip install -r requirements.txt
+
 
 ```powershell
 python -m venv env
